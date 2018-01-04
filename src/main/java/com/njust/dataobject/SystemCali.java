@@ -1,25 +1,9 @@
 package com.njust.dataobject;
 
-import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * Created by zhujiawei on 2017/12/29.
- */
-@Data
-@Entity
-@DynamicUpdate
 public class SystemCali {
-
-    @Id
-    @GeneratedValue
-    private Integer Id;
+    private Long id;
 
     private Double lsensor1;
 
@@ -39,7 +23,93 @@ public class SystemCali {
 
     private Integer udFlag;
 
-    @CreatedDate
     private Date createTime;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getLsensor1() {
+        return lsensor1;
+    }
+
+    public void setLsensor1(Double lsensor1) {
+        this.lsensor1 = lsensor1;
+    }
+
+    public Double getLsensor2() {
+        return lsensor2;
+    }
+
+    public void setLsensor2(Double lsensor2) {
+        this.lsensor2 = lsensor2;
+    }
+
+    public Double getLsensor3() {
+        return lsensor3;
+    }
+
+    public void setLsensor3(Double lsensor3) {
+        this.lsensor3 = lsensor3;
+    }
+
+    public Double getRsensor1() {
+        return rsensor1;
+    }
+
+    public void setRsensor1(Double rsensor1) {
+        this.rsensor1 = rsensor1;
+    }
+
+    public Double getRsensor2() {
+        return rsensor2;
+    }
+
+    public void setRsensor2(Double rsensor2) {
+        this.rsensor2 = rsensor2;
+    }
+
+    public Double getRsensor3() {
+        return rsensor3;
+    }
+
+    public void setRsensor3(Double rsensor3) {
+        this.rsensor3 = rsensor3;
+    }
+
+    public Double getLrailplane() {
+        return lrailplane;
+    }
+
+    public void setLrailplane(Double lrailplane) {
+        this.lrailplane = lrailplane;
+    }
+
+    public Double getRrailplane() {
+        return rrailplane;
+    }
+
+    public void setRrailplane(Double rrailplane) {
+        this.rrailplane = rrailplane;
+    }
+
+    public Integer getUdFlag() {
+        return udFlag;
+    }
+
+    public void setUdFlag(Integer udFlag) {
+        this.udFlag = udFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

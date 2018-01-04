@@ -1,6 +1,5 @@
 package com.njust.repository;
 
-import com.njust.dataobject.TrainParam;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

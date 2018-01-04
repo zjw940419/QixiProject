@@ -1,6 +1,5 @@
 package com.njust.repository;
 
-import com.njust.dataobject.TrainData;
 import com.njust.mapper.TrainDataMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;

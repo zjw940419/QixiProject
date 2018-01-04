@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njust.mapper.MotorInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njust.dataobject.MotorInfo" >
+    <id column="motor_id" property="motorId" jdbcType="BIGINT" />
+    <result column="train_id" property="trainId" jdbcType="BIGINT" />
+    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
+    <result column="motor_speed" property="motorSpeed" jdbcType="DOUBLE" />
+    <result column="temp_max" property="tempMax" jdbcType="DOUBLE" />
+    <result column="temp_min" property="tempMin" jdbcType="DOUBLE" />
+    <result column="temp_average" property="tempAverage" jdbcType="DOUBLE" />
+    <result column="lgap_max" property="lgapMax" jdbcType="INTEGER" />
+    <result column="lgap_min" property="lgapMin" jdbcType="INTEGER" />
+    <result column="lgap_average" property="lgapAverage" jdbcType="DOUBLE" />
+    <result column="rgap_max" property="rgapMax" jdbcType="INTEGER" />
+    <result column="rgap_min" property="rgapMin" jdbcType="INTEGER" />
+    <result column="rgap_average" property="rgapAverage" jdbcType="DOUBLE" />
+    <result column="lslot_min" property="lslotMin" jdbcType="INTEGER" />
+    <result column="lslot_max" property="lslotMax" jdbcType="INTEGER" />
+    <result column="lslot_average" property="lslotAverage" jdbcType="DOUBLE" />
+    <result column="rslot_min" property="rslotMin" jdbcType="INTEGER" />
+    <result column="rslot_max" property="rslotMax" jdbcType="INTEGER" />
+    <result column="rslot_average" property="rslotAverage" jdbcType="DOUBLE" />
+    <result column="motor_date" property="motorDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    motor_id, train_id, motor_num, motor_speed, temp_max, temp_min, temp_average, lgap_max, 
+    lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max, lslot_average, 
+    rslot_min, rslot_max, rslot_average, motor_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.MotorInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from motor_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njust.dataobject.MotorInfoExample" >
+    delete from motor_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njust.dataobject.MotorInfo" >
+    insert into motor_info (motor_id, train_id, motor_num, 
+      motor_speed, temp_max, temp_min, 
+      temp_average, lgap_max, lgap_min, 
+      lgap_average, rgap_max, rgap_min, 
+      rgap_average, lslot_min, lslot_max, 
+      lslot_average, rslot_min, rslot_max, 
+      rslot_average, motor_date)
+    values (#{motorId,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=INTEGER}, 
+      #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE}, 
+      #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=INTEGER}, #{lgapMin,jdbcType=INTEGER}, 
+      #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=INTEGER}, #{rgapMin,jdbcType=INTEGER}, 
+      #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=INTEGER}, #{lslotMax,jdbcType=INTEGER}, 
+      #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=INTEGER}, #{rslotMax,jdbcType=INTEGER}, 
+      #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njust.dataobject.MotorInfo" >
+    insert into motor_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="motorId != null" >
+        motor_id,
+      </if>
+      <if test="trainId != null" >
+        train_id,
+      </if>
+      <if test="motorNum != null" >
+        motor_num,
+      </if>
+      <if test="motorSpeed != null" >
+        motor_speed,
+      </if>
+      <if test="tempMax != null" >
+        temp_max,
+      </if>
+      <if test="tempMin != null" >
+        temp_min,
+      </if>
+      <if test="tempAverage != null" >
+        temp_average,
+      </if>
+      <if test="lgapMax != null" >
+        lgap_max,
+      </if>
+      <if test="lgapMin != null" >
+        lgap_min,
+      </if>
+      <if test="lgapAverage != null" >
+        lgap_average,
+      </if>
+      <if test="rgapMax != null" >
+        rgap_max,
+      </if>
+      <if test="rgapMin != null" >
+        rgap_min,
+      </if>
+      <if test="rgapAverage != null" >
+        rgap_average,
+      </if>
+      <if test="lslotMin != null" >
+        lslot_min,
+      </if>
+      <if test="lslotMax != null" >
+        lslot_max,
+      </if>
+      <if test="lslotAverage != null" >
+        lslot_average,
+      </if>
+      <if test="rslotMin != null" >
+        rslot_min,
+      </if>
+      <if test="rslotMax != null" >
+        rslot_max,
+      </if>
+      <if test="rslotAverage != null" >
+        rslot_average,
+      </if>
+      <if test="motorDate != null" >
+        motor_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="motorId != null" >
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null" >
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null" >
+        #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="motorSpeed != null" >
+        #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null" >
+        #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null" >
+        #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null" >
+        #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null" >
+        #{lgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="lgapMin != null" >
+        #{lgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="lgapAverage != null" >
+        #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null" >
+        #{rgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="rgapMin != null" >
+        #{rgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="rgapAverage != null" >
+        #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null" >
+        #{lslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="lslotMax != null" >
+        #{lslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="lslotAverage != null" >
+        #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null" >
+        #{rslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="rslotMax != null" >
+        #{rslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="rslotAverage != null" >
+        #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null" >
+        #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njust.dataobject.MotorInfoExample" resultType="java.lang.Integer" >
+    select count(*) from motor_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update motor_info
+    <set >
+      <if test="record.motorId != null" >
+        motor_id = #{record.motorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.trainId != null" >
+        train_id = #{record.trainId,jdbcType=BIGINT},
+      </if>
+      <if test="record.motorNum != null" >
+        motor_num = #{record.motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.motorSpeed != null" >
+        motor_speed = #{record.motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tempMax != null" >
+        temp_max = #{record.tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tempMin != null" >
+        temp_min = #{record.tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tempAverage != null" >
+        temp_average = #{record.tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lgapMax != null" >
+        lgap_max = #{record.lgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.lgapMin != null" >
+        lgap_min = #{record.lgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.lgapAverage != null" >
+        lgap_average = #{record.lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rgapMax != null" >
+        rgap_max = #{record.rgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.rgapMin != null" >
+        rgap_min = #{record.rgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.rgapAverage != null" >
+        rgap_average = #{record.rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lslotMin != null" >
+        lslot_min = #{record.lslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.lslotMax != null" >
+        lslot_max = #{record.lslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.lslotAverage != null" >
+        lslot_average = #{record.lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rslotMin != null" >
+        rslot_min = #{record.rslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.rslotMax != null" >
+        rslot_max = #{record.rslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.rslotAverage != null" >
+        rslot_average = #{record.rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.motorDate != null" >
+        motor_date = #{record.motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update motor_info
+    set motor_id = #{record.motorId,jdbcType=BIGINT},
+      train_id = #{record.trainId,jdbcType=BIGINT},
+      motor_num = #{record.motorNum,jdbcType=INTEGER},
+      motor_speed = #{record.motorSpeed,jdbcType=DOUBLE},
+      temp_max = #{record.tempMax,jdbcType=DOUBLE},
+      temp_min = #{record.tempMin,jdbcType=DOUBLE},
+      temp_average = #{record.tempAverage,jdbcType=DOUBLE},
+      lgap_max = #{record.lgapMax,jdbcType=INTEGER},
+      lgap_min = #{record.lgapMin,jdbcType=INTEGER},
+      lgap_average = #{record.lgapAverage,jdbcType=DOUBLE},
+      rgap_max = #{record.rgapMax,jdbcType=INTEGER},
+      rgap_min = #{record.rgapMin,jdbcType=INTEGER},
+      rgap_average = #{record.rgapAverage,jdbcType=DOUBLE},
+      lslot_min = #{record.lslotMin,jdbcType=INTEGER},
+      lslot_max = #{record.lslotMax,jdbcType=INTEGER},
+      lslot_average = #{record.lslotAverage,jdbcType=DOUBLE},
+      rslot_min = #{record.rslotMin,jdbcType=INTEGER},
+      rslot_max = #{record.rslotMax,jdbcType=INTEGER},
+      rslot_average = #{record.rslotAverage,jdbcType=DOUBLE},
+      motor_date = #{record.motorDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.MotorInfo" >
+    update motor_info
+    <set >
+      <if test="trainId != null" >
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null" >
+        motor_num = #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="motorSpeed != null" >
+        motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null" >
+        temp_max = #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null" >
+        temp_min = #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null" >
+        temp_average = #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null" >
+        lgap_max = #{lgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="lgapMin != null" >
+        lgap_min = #{lgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="lgapAverage != null" >
+        lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null" >
+        rgap_max = #{rgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="rgapMin != null" >
+        rgap_min = #{rgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="rgapAverage != null" >
+        rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null" >
+        lslot_min = #{lslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="lslotMax != null" >
+        lslot_max = #{lslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="lslotAverage != null" >
+        lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null" >
+        rslot_min = #{rslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="rslotMax != null" >
+        rslot_max = #{rslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="rslotAverage != null" >
+        rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null" >
+        motor_date = #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.MotorInfo" >
+    update motor_info
+    set train_id = #{trainId,jdbcType=BIGINT},
+      motor_num = #{motorNum,jdbcType=INTEGER},
+      motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      temp_max = #{tempMax,jdbcType=DOUBLE},
+      temp_min = #{tempMin,jdbcType=DOUBLE},
+      temp_average = #{tempAverage,jdbcType=DOUBLE},
+      lgap_max = #{lgapMax,jdbcType=INTEGER},
+      lgap_min = #{lgapMin,jdbcType=INTEGER},
+      lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      rgap_max = #{rgapMax,jdbcType=INTEGER},
+      rgap_min = #{rgapMin,jdbcType=INTEGER},
+      rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      lslot_min = #{lslotMin,jdbcType=INTEGER},
+      lslot_max = #{lslotMax,jdbcType=INTEGER},
+      lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      rslot_min = #{rslotMin,jdbcType=INTEGER},
+      rslot_max = #{rslotMax,jdbcType=INTEGER},
+      rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      motor_date = #{motorDate,jdbcType=TIMESTAMP}
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+</mapper>

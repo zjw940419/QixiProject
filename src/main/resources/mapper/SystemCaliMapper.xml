@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njust.mapper.SystemCaliMapper" >
+  <resultMap id="BaseResultMap" type="com.njust.dataobject.SystemCali" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lsensor1" property="lsensor1" jdbcType="DOUBLE" />
+    <result column="lsensor2" property="lsensor2" jdbcType="DOUBLE" />
+    <result column="lsensor3" property="lsensor3" jdbcType="DOUBLE" />
+    <result column="rsensor1" property="rsensor1" jdbcType="DOUBLE" />
+    <result column="rsensor2" property="rsensor2" jdbcType="DOUBLE" />
+    <result column="rsensor3" property="rsensor3" jdbcType="DOUBLE" />
+    <result column="lrailplane" property="lrailplane" jdbcType="DOUBLE" />
+    <result column="rrailplane" property="rrailplane" jdbcType="DOUBLE" />
+    <result column="ud_flag" property="udFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lsensor1, lsensor2, lsensor3, rsensor1, rsensor2, rsensor3, lrailplane, rrailplane, 
+    ud_flag, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.SystemCaliExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from system_cali
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_cali
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from system_cali
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njust.dataobject.SystemCaliExample" >
+    delete from system_cali
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njust.dataobject.SystemCali" >
+    insert into system_cali (id, lsensor1, lsensor2, 
+      lsensor3, rsensor1, rsensor2, 
+      rsensor3, lrailplane, rrailplane, 
+      ud_flag, create_time)
+    values (#{id,jdbcType=BIGINT}, #{lsensor1,jdbcType=DOUBLE}, #{lsensor2,jdbcType=DOUBLE}, 
+      #{lsensor3,jdbcType=DOUBLE}, #{rsensor1,jdbcType=DOUBLE}, #{rsensor2,jdbcType=DOUBLE}, 
+      #{rsensor3,jdbcType=DOUBLE}, #{lrailplane,jdbcType=DOUBLE}, #{rrailplane,jdbcType=DOUBLE}, 
+      #{udFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njust.dataobject.SystemCali" >
+    insert into system_cali
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lsensor1 != null" >
+        lsensor1,
+      </if>
+      <if test="lsensor2 != null" >
+        lsensor2,
+      </if>
+      <if test="lsensor3 != null" >
+        lsensor3,
+      </if>
+      <if test="rsensor1 != null" >
+        rsensor1,
+      </if>
+      <if test="rsensor2 != null" >
+        rsensor2,
+      </if>
+      <if test="rsensor3 != null" >
+        rsensor3,
+      </if>
+      <if test="lrailplane != null" >
+        lrailplane,
+      </if>
+      <if test="rrailplane != null" >
+        rrailplane,
+      </if>
+      <if test="udFlag != null" >
+        ud_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="lsensor1 != null" >
+        #{lsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="lsensor2 != null" >
+        #{lsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="lsensor3 != null" >
+        #{lsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor1 != null" >
+        #{rsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor2 != null" >
+        #{rsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor3 != null" >
+        #{rsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="lrailplane != null" >
+        #{lrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="rrailplane != null" >
+        #{rrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="udFlag != null" >
+        #{udFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njust.dataobject.SystemCaliExample" resultType="java.lang.Integer" >
+    select count(*) from system_cali
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update system_cali
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.lsensor1 != null" >
+        lsensor1 = #{record.lsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lsensor2 != null" >
+        lsensor2 = #{record.lsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lsensor3 != null" >
+        lsensor3 = #{record.lsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rsensor1 != null" >
+        rsensor1 = #{record.rsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rsensor2 != null" >
+        rsensor2 = #{record.rsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rsensor3 != null" >
+        rsensor3 = #{record.rsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lrailplane != null" >
+        lrailplane = #{record.lrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rrailplane != null" >
+        rrailplane = #{record.rrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="record.udFlag != null" >
+        ud_flag = #{record.udFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update system_cali
+    set id = #{record.id,jdbcType=BIGINT},
+      lsensor1 = #{record.lsensor1,jdbcType=DOUBLE},
+      lsensor2 = #{record.lsensor2,jdbcType=DOUBLE},
+      lsensor3 = #{record.lsensor3,jdbcType=DOUBLE},
+      rsensor1 = #{record.rsensor1,jdbcType=DOUBLE},
+      rsensor2 = #{record.rsensor2,jdbcType=DOUBLE},
+      rsensor3 = #{record.rsensor3,jdbcType=DOUBLE},
+      lrailplane = #{record.lrailplane,jdbcType=DOUBLE},
+      rrailplane = #{record.rrailplane,jdbcType=DOUBLE},
+      ud_flag = #{record.udFlag,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.SystemCali" >
+    update system_cali
+    <set >
+      <if test="lsensor1 != null" >
+        lsensor1 = #{lsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="lsensor2 != null" >
+        lsensor2 = #{lsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="lsensor3 != null" >
+        lsensor3 = #{lsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor1 != null" >
+        rsensor1 = #{rsensor1,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor2 != null" >
+        rsensor2 = #{rsensor2,jdbcType=DOUBLE},
+      </if>
+      <if test="rsensor3 != null" >
+        rsensor3 = #{rsensor3,jdbcType=DOUBLE},
+      </if>
+      <if test="lrailplane != null" >
+        lrailplane = #{lrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="rrailplane != null" >
+        rrailplane = #{rrailplane,jdbcType=DOUBLE},
+      </if>
+      <if test="udFlag != null" >
+        ud_flag = #{udFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.SystemCali" >
+    update system_cali
+    set lsensor1 = #{lsensor1,jdbcType=DOUBLE},
+      lsensor2 = #{lsensor2,jdbcType=DOUBLE},
+      lsensor3 = #{lsensor3,jdbcType=DOUBLE},
+      rsensor1 = #{rsensor1,jdbcType=DOUBLE},
+      rsensor2 = #{rsensor2,jdbcType=DOUBLE},
+      rsensor3 = #{rsensor3,jdbcType=DOUBLE},
+      lrailplane = #{lrailplane,jdbcType=DOUBLE},
+      rrailplane = #{rrailplane,jdbcType=DOUBLE},
+      ud_flag = #{udFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

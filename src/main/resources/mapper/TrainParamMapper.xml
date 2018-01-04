@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njust.mapper.TrainParamMapper" >
+  <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainParam" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gap_warn" property="gapWarn" jdbcType="DOUBLE" />
+    <result column="gap_alarm" property="gapAlarm" jdbcType="DOUBLE" />
+    <result column="temp_warn" property="tempWarn" jdbcType="DOUBLE" />
+    <result column="temp_alarm" property="tempAlarm" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gap_warn, gap_alarm, temp_warn, temp_alarm
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainParamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from train_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from train_param
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from train_param
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njust.dataobject.TrainParamExample" >
+    delete from train_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njust.dataobject.TrainParam" >
+    insert into train_param (id, gap_warn, gap_alarm, 
+      temp_warn, temp_alarm)
+    values (#{id,jdbcType=BIGINT}, #{gapWarn,jdbcType=DOUBLE}, #{gapAlarm,jdbcType=DOUBLE}, 
+      #{tempWarn,jdbcType=DOUBLE}, #{tempAlarm,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njust.dataobject.TrainParam" >
+    insert into train_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gapWarn != null" >
+        gap_warn,
+      </if>
+      <if test="gapAlarm != null" >
+        gap_alarm,
+      </if>
+      <if test="tempWarn != null" >
+        temp_warn,
+      </if>
+      <if test="tempAlarm != null" >
+        temp_alarm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gapWarn != null" >
+        #{gapWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="gapAlarm != null" >
+        #{gapAlarm,jdbcType=DOUBLE},
+      </if>
+      <if test="tempWarn != null" >
+        #{tempWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAlarm != null" >
+        #{tempAlarm,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njust.dataobject.TrainParamExample" resultType="java.lang.Integer" >
+    select count(*) from train_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update train_param
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gapWarn != null" >
+        gap_warn = #{record.gapWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.gapAlarm != null" >
+        gap_alarm = #{record.gapAlarm,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tempWarn != null" >
+        temp_warn = #{record.tempWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tempAlarm != null" >
+        temp_alarm = #{record.tempAlarm,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update train_param
+    set id = #{record.id,jdbcType=BIGINT},
+      gap_warn = #{record.gapWarn,jdbcType=DOUBLE},
+      gap_alarm = #{record.gapAlarm,jdbcType=DOUBLE},
+      temp_warn = #{record.tempWarn,jdbcType=DOUBLE},
+      temp_alarm = #{record.tempAlarm,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainParam" >
+    update train_param
+    <set >
+      <if test="gapWarn != null" >
+        gap_warn = #{gapWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="gapAlarm != null" >
+        gap_alarm = #{gapAlarm,jdbcType=DOUBLE},
+      </if>
+      <if test="tempWarn != null" >
+        temp_warn = #{tempWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAlarm != null" >
+        temp_alarm = #{tempAlarm,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainParam" >
+    update train_param
+    set gap_warn = #{gapWarn,jdbcType=DOUBLE},
+      gap_alarm = #{gapAlarm,jdbcType=DOUBLE},
+      temp_warn = #{tempWarn,jdbcType=DOUBLE},
+      temp_alarm = #{tempAlarm,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

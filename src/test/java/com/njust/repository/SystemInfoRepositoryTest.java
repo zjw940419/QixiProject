@@ -1,6 +1,5 @@
 package com.njust.repository;
 
-import com.njust.dataobject.SystemInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by zhujiawei on 2017/12/29.
