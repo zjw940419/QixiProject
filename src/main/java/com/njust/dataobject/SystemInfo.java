@@ -1,21 +1,9 @@
 package com.njust.dataobject;
 
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * Created by zhujiawei on 2017/12/29.
- */
-@Data
-@Entity
 public class SystemInfo {
-    @Id
-    @GeneratedValue
-    private Integer Id;
+    private Long id;
 
     private Integer llaserState;
 
@@ -34,4 +22,84 @@ public class SystemInfo {
     private Integer udFlag;
 
     private Date trainDate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getLlaserState() {
+        return llaserState;
+    }
+
+    public void setLlaserState(Integer llaserState) {
+        this.llaserState = llaserState;
+    }
+
+    public Integer getRlaserState() {
+        return rlaserState;
+    }
+
+    public void setRlaserState(Integer rlaserState) {
+        this.rlaserState = rlaserState;
+    }
+
+    public Integer getTempState() {
+        return tempState;
+    }
+
+    public void setTempState(Integer tempState) {
+        this.tempState = tempState;
+    }
+
+    public Integer getBrushState() {
+        return brushState;
+    }
+
+    public void setBrushState(Integer brushState) {
+        this.brushState = brushState;
+    }
+
+    public Integer getEdeviceState() {
+        return edeviceState;
+    }
+
+    public void setEdeviceState(Integer edeviceState) {
+        this.edeviceState = edeviceState;
+    }
+
+    public Integer getPlcState() {
+        return plcState;
+    }
+
+    public void setPlcState(Integer plcState) {
+        this.plcState = plcState;
+    }
+
+    public Integer getDccState() {
+        return dccState;
+    }
+
+    public void setDccState(Integer dccState) {
+        this.dccState = dccState;
+    }
+
+    public Integer getUdFlag() {
+        return udFlag;
+    }
+
+    public void setUdFlag(Integer udFlag) {
+        this.udFlag = udFlag;
+    }
+
+    public Date getTrainDate() {
+        return trainDate;
+    }
+
+    public void setTrainDate(Date trainDate) {
+        this.trainDate = trainDate;
+    }
 }

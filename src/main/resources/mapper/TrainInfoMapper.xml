@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njust.mapper.TrainInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainInfo" >
+    <id column="train_id" property="trainId" jdbcType="BIGINT" />
+    <result column="train_station" property="trainStation" jdbcType="VARCHAR" />
+    <result column="train_number" property="trainNumber" jdbcType="VARCHAR" />
+    <result column="control_num" property="controlNum" jdbcType="VARCHAR" />
+    <result column="train_direction" property="trainDirection" jdbcType="INTEGER" />
+    <result column="train_state" property="trainState" jdbcType="INTEGER" />
+    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    train_id, train_station, train_number, control_num, train_direction, train_state, 
+    train_date, insert_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from train_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from train_info
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from train_info
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njust.dataobject.TrainInfoExample" >
+    delete from train_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njust.dataobject.TrainInfo" >
+    insert into train_info (train_id, train_station, train_number, 
+      control_num, train_direction, train_state, 
+      train_date, insert_time)
+    values (#{trainId,jdbcType=BIGINT}, #{trainStation,jdbcType=VARCHAR}, #{trainNumber,jdbcType=VARCHAR}, 
+      #{controlNum,jdbcType=VARCHAR}, #{trainDirection,jdbcType=INTEGER}, #{trainState,jdbcType=INTEGER}, 
+      #{trainDate,jdbcType=TIMESTAMP}, #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njust.dataobject.TrainInfo" >
+    insert into train_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        train_id,
+      </if>
+      <if test="trainStation != null" >
+        train_station,
+      </if>
+      <if test="trainNumber != null" >
+        train_number,
+      </if>
+      <if test="controlNum != null" >
+        control_num,
+      </if>
+      <if test="trainDirection != null" >
+        train_direction,
+      </if>
+      <if test="trainState != null" >
+        train_state,
+      </if>
+      <if test="trainDate != null" >
+        train_date,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="trainStation != null" >
+        #{trainStation,jdbcType=VARCHAR},
+      </if>
+      <if test="trainNumber != null" >
+        #{trainNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="controlNum != null" >
+        #{controlNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trainDirection != null" >
+        #{trainDirection,jdbcType=INTEGER},
+      </if>
+      <if test="trainState != null" >
+        #{trainState,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null" >
+        #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njust.dataobject.TrainInfoExample" resultType="java.lang.Integer" >
+    select count(*) from train_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update train_info
+    <set >
+      <if test="record.trainId != null" >
+        train_id = #{record.trainId,jdbcType=BIGINT},
+      </if>
+      <if test="record.trainStation != null" >
+        train_station = #{record.trainStation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainNumber != null" >
+        train_number = #{record.trainNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controlNum != null" >
+        control_num = #{record.controlNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainDirection != null" >
+        train_direction = #{record.trainDirection,jdbcType=INTEGER},
+      </if>
+      <if test="record.trainState != null" >
+        train_state = #{record.trainState,jdbcType=INTEGER},
+      </if>
+      <if test="record.trainDate != null" >
+        train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.insertTime != null" >
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update train_info
+    set train_id = #{record.trainId,jdbcType=BIGINT},
+      train_station = #{record.trainStation,jdbcType=VARCHAR},
+      train_number = #{record.trainNumber,jdbcType=VARCHAR},
+      control_num = #{record.controlNum,jdbcType=VARCHAR},
+      train_direction = #{record.trainDirection,jdbcType=INTEGER},
+      train_state = #{record.trainState,jdbcType=INTEGER},
+      train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainInfo" >
+    update train_info
+    <set >
+      <if test="trainStation != null" >
+        train_station = #{trainStation,jdbcType=VARCHAR},
+      </if>
+      <if test="trainNumber != null" >
+        train_number = #{trainNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="controlNum != null" >
+        control_num = #{controlNum,jdbcType=VARCHAR},
+      </if>
+      <if test="trainDirection != null" >
+        train_direction = #{trainDirection,jdbcType=INTEGER},
+      </if>
+      <if test="trainState != null" >
+        train_state = #{trainState,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null" >
+        train_date = #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainInfo" >
+    update train_info
+    set train_station = #{trainStation,jdbcType=VARCHAR},
+      train_number = #{trainNumber,jdbcType=VARCHAR},
+      control_num = #{controlNum,jdbcType=VARCHAR},
+      train_direction = #{trainDirection,jdbcType=INTEGER},
+      train_state = #{trainState,jdbcType=INTEGER},
+      train_date = #{trainDate,jdbcType=TIMESTAMP},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </update>
+</mapper>

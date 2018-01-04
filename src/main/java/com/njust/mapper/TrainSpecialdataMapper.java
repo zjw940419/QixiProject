@@ -1,18 +1,30 @@
 package com.njust.mapper;
 
+import com.njust.dataobject.TrainSpecialData;
+import com.njust.dataobject.TrainSpecialDataExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-import com.njust.dataobject.TrainSpecialdata;
+public interface TrainSpecialDataMapper {
+    int countByExample(TrainSpecialDataExample example);
 
-public interface TrainSpecialdataMapper {
+    int deleteByExample(TrainSpecialDataExample example);
+
     int deleteByPrimaryKey(Long trainId);
 
-    int insert(TrainSpecialdata record);
+    int insert(TrainSpecialData record);
 
-    int insertSelective(TrainSpecialdata record);
+    int insertSelective(TrainSpecialData record);
 
-    TrainSpecialdata selectByPrimaryKey(Long trainId);
+    List<TrainSpecialData> selectByExample(TrainSpecialDataExample example);
 
-    int updateByPrimaryKeySelective(TrainSpecialdata record);
+    TrainSpecialData selectByPrimaryKey(Long trainId);
 
-    int updateByPrimaryKey(TrainSpecialdata record);
+    int updateByExampleSelective(@Param("record") TrainSpecialData record, @Param("example") TrainSpecialDataExample example);
+
+    int updateByExample(@Param("record") TrainSpecialData record, @Param("example") TrainSpecialDataExample example);
+
+    int updateByPrimaryKeySelective(TrainSpecialData record);
+
+    int updateByPrimaryKey(TrainSpecialData record);
 }

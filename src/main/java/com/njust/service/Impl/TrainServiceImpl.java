@@ -2,11 +2,6 @@ package com.njust.service.Impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.njust.dataobject.GearInfo;
-import com.njust.dataobject.MotorInfo;
-import com.njust.dataobject.TrainData;
-import com.njust.dataobject.TrainInfo;
-import com.njust.exception.QixiException;
 import com.njust.mapper.GearInfoMapper;
 import com.njust.mapper.MotorInfoMapper;
 import com.njust.mapper.TrainDataMapper;

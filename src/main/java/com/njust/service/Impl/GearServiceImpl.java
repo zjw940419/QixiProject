@@ -1,8 +1,5 @@
 package com.njust.service.Impl;
 
-import com.njust.dataobject.GearInfo;
-import com.njust.dataobject.MotorInfo;
-
 import com.njust.mapper.GearInfoMapper;
 import com.njust.mapper.MotorInfoMapper;
 import com.njust.service.GearService;

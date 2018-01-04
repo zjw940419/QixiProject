@@ -1,10 +1,6 @@
 package com.njust.service;
 
-import com.njust.dataobject.GearInfo;
-import com.njust.vo.GearVO;
 import com.njust.vo.ResultVO;
-
-import java.util.List;
 
 /**
  * Created by zhujiawei on 2017/12/30.

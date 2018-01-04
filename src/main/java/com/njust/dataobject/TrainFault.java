@@ -11,17 +11,6 @@ public class TrainFault {
 
     private Date trainDate;
 
-    public TrainFault(Long id, Long trainId, Integer faultType, Date trainDate) {
-        this.id = id;
-        this.trainId = trainId;
-        this.faultType = faultType;
-        this.trainDate = trainDate;
-    }
-
-    public TrainFault() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

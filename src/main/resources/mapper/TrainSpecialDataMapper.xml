@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njust.mapper.TrainSpecialDataMapper" >
+  <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainSpecialData" >
+    <id column="train_id" property="trainId" jdbcType="BIGINT" />
+    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
+    <result column="tlgap_min" property="tlgapMin" jdbcType="DOUBLE" />
+    <result column="trgap_min" property="trgapMin" jdbcType="DOUBLE" />
+    <result column="slgap_min" property="slgapMin" jdbcType="DOUBLE" />
+    <result column="srgap_min" property="srgapMin" jdbcType="DOUBLE" />
+    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    train_id, motor_num, tlgap_min, trgap_min, slgap_min, srgap_min, train_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainSpecialDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from train_specialdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from train_specialdata
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from train_specialdata
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njust.dataobject.TrainSpecialDataExample" >
+    delete from train_specialdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njust.dataobject.TrainSpecialData" >
+    insert into train_specialdata (train_id, motor_num, tlgap_min, 
+      trgap_min, slgap_min, srgap_min, 
+      train_date)
+    values (#{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=INTEGER}, #{tlgapMin,jdbcType=DOUBLE}, 
+      #{trgapMin,jdbcType=DOUBLE}, #{slgapMin,jdbcType=DOUBLE}, #{srgapMin,jdbcType=DOUBLE}, 
+      #{trainDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njust.dataobject.TrainSpecialData" >
+    insert into train_specialdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        train_id,
+      </if>
+      <if test="motorNum != null" >
+        motor_num,
+      </if>
+      <if test="tlgapMin != null" >
+        tlgap_min,
+      </if>
+      <if test="trgapMin != null" >
+        trgap_min,
+      </if>
+      <if test="slgapMin != null" >
+        slgap_min,
+      </if>
+      <if test="srgapMin != null" >
+        srgap_min,
+      </if>
+      <if test="trainDate != null" >
+        train_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainId != null" >
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null" >
+        #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="tlgapMin != null" >
+        #{tlgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="trgapMin != null" >
+        #{trgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="slgapMin != null" >
+        #{slgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="srgapMin != null" >
+        #{srgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="trainDate != null" >
+        #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njust.dataobject.TrainSpecialDataExample" resultType="java.lang.Integer" >
+    select count(*) from train_specialdata
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update train_specialdata
+    <set >
+      <if test="record.trainId != null" >
+        train_id = #{record.trainId,jdbcType=BIGINT},
+      </if>
+      <if test="record.motorNum != null" >
+        motor_num = #{record.motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.tlgapMin != null" >
+        tlgap_min = #{record.tlgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trgapMin != null" >
+        trgap_min = #{record.trgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.slgapMin != null" >
+        slgap_min = #{record.slgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.srgapMin != null" >
+        srgap_min = #{record.srgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trainDate != null" >
+        train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update train_specialdata
+    set train_id = #{record.trainId,jdbcType=BIGINT},
+      motor_num = #{record.motorNum,jdbcType=INTEGER},
+      tlgap_min = #{record.tlgapMin,jdbcType=DOUBLE},
+      trgap_min = #{record.trgapMin,jdbcType=DOUBLE},
+      slgap_min = #{record.slgapMin,jdbcType=DOUBLE},
+      srgap_min = #{record.srgapMin,jdbcType=DOUBLE},
+      train_date = #{record.trainDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainSpecialData" >
+    update train_specialdata
+    <set >
+      <if test="motorNum != null" >
+        motor_num = #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="tlgapMin != null" >
+        tlgap_min = #{tlgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="trgapMin != null" >
+        trgap_min = #{trgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="slgapMin != null" >
+        slgap_min = #{slgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="srgapMin != null" >
+        srgap_min = #{srgapMin,jdbcType=DOUBLE},
+      </if>
+      <if test="trainDate != null" >
+        train_date = #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainSpecialData" >
+    update train_specialdata
+    set motor_num = #{motorNum,jdbcType=INTEGER},
+      tlgap_min = #{tlgapMin,jdbcType=DOUBLE},
+      trgap_min = #{trgapMin,jdbcType=DOUBLE},
+      slgap_min = #{slgapMin,jdbcType=DOUBLE},
+      srgap_min = #{srgapMin,jdbcType=DOUBLE},
+      train_date = #{trainDate,jdbcType=TIMESTAMP}
+    where train_id = #{trainId,jdbcType=BIGINT}
+  </update>
+</mapper>

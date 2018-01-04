@@ -19,21 +19,6 @@ public class TrainInfo {
 
     private Date insertTime;
 
-    public TrainInfo(Long trainId, String trainStation, String trainNumber, String controlNum, Integer trainDirection, Integer trainState, Date trainDate, Date insertTime) {
-        this.trainId = trainId;
-        this.trainStation = trainStation;
-        this.trainNumber = trainNumber;
-        this.controlNum = controlNum;
-        this.trainDirection = trainDirection;
-        this.trainState = trainState;
-        this.trainDate = trainDate;
-        this.insertTime = insertTime;
-    }
-
-    public TrainInfo() {
-        super();
-    }
-
     public Long getTrainId() {
         return trainId;
     }

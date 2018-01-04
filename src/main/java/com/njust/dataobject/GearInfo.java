@@ -23,23 +23,6 @@ public class GearInfo {
 
     private Date gearDate;
 
-    public GearInfo(Long id, Integer gearNum, Double lslotValue, Double rslotValue, Double lgapValue, Double rgapValue, Double lslotDepth, Double rslotDepth, Long motorId, Date gearDate) {
-        this.id = id;
-        this.gearNum = gearNum;
-        this.lslotValue = lslotValue;
-        this.rslotValue = rslotValue;
-        this.lgapValue = lgapValue;
-        this.rgapValue = rgapValue;
-        this.lslotDepth = lslotDepth;
-        this.rslotDepth = rslotDepth;
-        this.motorId = motorId;
-        this.gearDate = gearDate;
-    }
-
-    public GearInfo() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

@@ -43,33 +43,6 @@ public class MotorInfo {
 
     private Date motorDate;
 
-    public MotorInfo(Long motorId, Long trainId, Integer motorNum, Double motorSpeed, Double tempMax, Double tempMin, Double tempAverage, Integer lgapMax, Integer lgapMin, Double lgapAverage, Integer rgapMax, Integer rgapMin, Double rgapAverage, Integer lslotMin, Integer lslotMax, Double lslotAverage, Integer rslotMin, Integer rslotMax, Double rslotAverage, Date motorDate) {
-        this.motorId = motorId;
-        this.trainId = trainId;
-        this.motorNum = motorNum;
-        this.motorSpeed = motorSpeed;
-        this.tempMax = tempMax;
-        this.tempMin = tempMin;
-        this.tempAverage = tempAverage;
-        this.lgapMax = lgapMax;
-        this.lgapMin = lgapMin;
-        this.lgapAverage = lgapAverage;
-        this.rgapMax = rgapMax;
-        this.rgapMin = rgapMin;
-        this.rgapAverage = rgapAverage;
-        this.lslotMin = lslotMin;
-        this.lslotMax = lslotMax;
-        this.lslotAverage = lslotAverage;
-        this.rslotMin = rslotMin;
-        this.rslotMax = rslotMax;
-        this.rslotAverage = rslotAverage;
-        this.motorDate = motorDate;
-    }
-
-    public MotorInfo() {
-        super();
-    }
-
     public Long getMotorId() {
         return motorId;
     }

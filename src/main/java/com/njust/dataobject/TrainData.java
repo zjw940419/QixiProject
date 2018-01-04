@@ -39,31 +39,6 @@ public class TrainData {
 
     private Date trainDate;
 
-    public TrainData(Long trainId, Integer tempMax, Double tempAverage, Double gapminVal, Integer gapMin, Integer lgapMax, Integer lgapMin, Integer rgapMax, Integer rgapMin, Double rgapAverage, Double lgapAverage, Integer rslotMax, Integer rslotMin, Integer lslotMax, Integer lslotMin, Double rslotAverage, Double lslotAverage, Date trainDate) {
-        this.trainId = trainId;
-        this.tempMax = tempMax;
-        this.tempAverage = tempAverage;
-        this.gapminVal = gapminVal;
-        this.gapMin = gapMin;
-        this.lgapMax = lgapMax;
-        this.lgapMin = lgapMin;
-        this.rgapMax = rgapMax;
-        this.rgapMin = rgapMin;
-        this.rgapAverage = rgapAverage;
-        this.lgapAverage = lgapAverage;
-        this.rslotMax = rslotMax;
-        this.rslotMin = rslotMin;
-        this.lslotMax = lslotMax;
-        this.lslotMin = lslotMin;
-        this.rslotAverage = rslotAverage;
-        this.lslotAverage = lslotAverage;
-        this.trainDate = trainDate;
-    }
-
-    public TrainData() {
-        super();
-    }
-
     public Long getTrainId() {
         return trainId;
     }

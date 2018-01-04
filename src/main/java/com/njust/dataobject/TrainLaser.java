@@ -1,27 +1,11 @@
 package com.njust.dataobject;
 
-import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * Created by zhujiawei on 2017/12/28.
- */
-@Data
-@Entity
-@DynamicUpdate
 public class TrainLaser {
-    /** 自增长的主键*/
-    @Id
-    @GeneratedValue
-    private Integer Id;
+    private Long id;
 
-    private Integer trainId;
+    private Long trainId;
 
     private Double leftLaser;
 
@@ -30,4 +14,52 @@ public class TrainLaser {
     private Date trainDate;
 
     private Integer motorNum;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getTrainId() {
+        return trainId;
+    }
+
+    public void setTrainId(Long trainId) {
+        this.trainId = trainId;
+    }
+
+    public Double getLeftLaser() {
+        return leftLaser;
+    }
+
+    public void setLeftLaser(Double leftLaser) {
+        this.leftLaser = leftLaser;
+    }
+
+    public Double getRightLaser() {
+        return rightLaser;
+    }
+
+    public void setRightLaser(Double rightLaser) {
+        this.rightLaser = rightLaser;
+    }
+
+    public Date getTrainDate() {
+        return trainDate;
+    }
+
+    public void setTrainDate(Date trainDate) {
+        this.trainDate = trainDate;
+    }
+
+    public Integer getMotorNum() {
+        return motorNum;
+    }
+
+    public void setMotorNum(Integer motorNum) {
+        this.motorNum = motorNum;
+    }
 }
