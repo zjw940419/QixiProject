@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njust.mapper.MotorInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.MotorInfo">
+    <constructor>
+      <idArg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="motor_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="motor_speed" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_max" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_min" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_max" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lgap_min" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_max" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rgap_min" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_min" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lslot_max" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_min" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rslot_max" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    motor_id, train_id, motor_num, motor_speed, temp_max, temp_min, temp_average, lgap_max, 
+    lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max, lslot_average, 
+    rslot_min, rslot_max, rslot_average, motor_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info (motor_id, train_id, motor_num, 
+      motor_speed, temp_max, temp_min, 
+      temp_average, lgap_max, lgap_min, 
+      lgap_average, rgap_max, rgap_min, 
+      rgap_average, lslot_min, lslot_max, 
+      lslot_average, rslot_min, rslot_max, 
+      rslot_average, motor_date)
+    values (#{motorId,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=INTEGER}, 
+      #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE}, 
+      #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=INTEGER}, #{lgapMin,jdbcType=INTEGER}, 
+      #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=INTEGER}, #{rgapMin,jdbcType=INTEGER}, 
+      #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=INTEGER}, #{lslotMax,jdbcType=INTEGER}, 
+      #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=INTEGER}, #{rslotMax,jdbcType=INTEGER}, 
+      #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="motorNum != null">
+        motor_num,
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed,
+      </if>
+      <if test="tempMax != null">
+        temp_max,
+      </if>
+      <if test="tempMin != null">
+        temp_min,
+      </if>
+      <if test="tempAverage != null">
+        temp_average,
+      </if>
+      <if test="lgapMax != null">
+        lgap_max,
+      </if>
+      <if test="lgapMin != null">
+        lgap_min,
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average,
+      </if>
+      <if test="rgapMax != null">
+        rgap_max,
+      </if>
+      <if test="rgapMin != null">
+        rgap_min,
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average,
+      </if>
+      <if test="lslotMin != null">
+        lslot_min,
+      </if>
+      <if test="lslotMax != null">
+        lslot_max,
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average,
+      </if>
+      <if test="rslotMin != null">
+        rslot_min,
+      </if>
+      <if test="rslotMax != null">
+        rslot_max,
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average,
+      </if>
+      <if test="motorDate != null">
+        motor_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="motorSpeed != null">
+        #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        #{lgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="lgapMin != null">
+        #{lgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="lgapAverage != null">
+        #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        #{rgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="rgapMin != null">
+        #{rgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="rgapAverage != null">
+        #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        #{lslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="lslotMax != null">
+        #{lslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="lslotAverage != null">
+        #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        #{rslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="rslotMax != null">
+        #{rslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="rslotAverage != null">
+        #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        motor_num = #{motorNum,jdbcType=INTEGER},
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        temp_max = #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        temp_min = #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        temp_average = #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        lgap_max = #{lgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="lgapMin != null">
+        lgap_min = #{lgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        rgap_max = #{rgapMax,jdbcType=INTEGER},
+      </if>
+      <if test="rgapMin != null">
+        rgap_min = #{rgapMin,jdbcType=INTEGER},
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        lslot_min = #{lslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="lslotMax != null">
+        lslot_max = #{lslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        rslot_min = #{rslotMin,jdbcType=INTEGER},
+      </if>
+      <if test="rslotMax != null">
+        rslot_max = #{rslotMax,jdbcType=INTEGER},
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        motor_date = #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    set train_id = #{trainId,jdbcType=BIGINT},
+      motor_num = #{motorNum,jdbcType=INTEGER},
+      motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      temp_max = #{tempMax,jdbcType=DOUBLE},
+      temp_min = #{tempMin,jdbcType=DOUBLE},
+      temp_average = #{tempAverage,jdbcType=DOUBLE},
+      lgap_max = #{lgapMax,jdbcType=INTEGER},
+      lgap_min = #{lgapMin,jdbcType=INTEGER},
+      lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      rgap_max = #{rgapMax,jdbcType=INTEGER},
+      rgap_min = #{rgapMin,jdbcType=INTEGER},
+      rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      lslot_min = #{lslotMin,jdbcType=INTEGER},
+      lslot_max = #{lslotMax,jdbcType=INTEGER},
+      lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      rslot_min = #{rslotMin,jdbcType=INTEGER},
+      rslot_max = #{rslotMax,jdbcType=INTEGER},
+      rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      motor_date = #{motorDate,jdbcType=TIMESTAMP}
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.MotorInfo">
+    <constructor>
+      <idArg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="motor_num" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="motor_speed" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_max" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_min" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lgap_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rgap_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lslot_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rslot_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    motor_id, train_id, motor_num, motor_speed, temp_max, temp_min, temp_average, lgap_max, 
+    lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max, lslot_average, 
+    rslot_min, rslot_max, rslot_average, motor_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info (motor_id, train_id, motor_num, 
+      motor_speed, temp_max, temp_min, 
+      temp_average, lgap_max, lgap_min, 
+      lgap_average, rgap_max, rgap_min, 
+      rgap_average, lslot_min, lslot_max, 
+      lslot_average, rslot_min, rslot_max, 
+      rslot_average, motor_date)
+    values (#{motorId,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=TINYINT}, 
+      #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE}, 
+      #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=TINYINT}, #{lgapMin,jdbcType=TINYINT}, 
+      #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=TINYINT}, #{rgapMin,jdbcType=TINYINT}, 
+      #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=TINYINT}, #{lslotMax,jdbcType=TINYINT}, 
+      #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=TINYINT}, #{rslotMax,jdbcType=TINYINT}, 
+      #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="motorNum != null">
+        motor_num,
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed,
+      </if>
+      <if test="tempMax != null">
+        temp_max,
+      </if>
+      <if test="tempMin != null">
+        temp_min,
+      </if>
+      <if test="tempAverage != null">
+        temp_average,
+      </if>
+      <if test="lgapMax != null">
+        lgap_max,
+      </if>
+      <if test="lgapMin != null">
+        lgap_min,
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average,
+      </if>
+      <if test="rgapMax != null">
+        rgap_max,
+      </if>
+      <if test="rgapMin != null">
+        rgap_min,
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average,
+      </if>
+      <if test="lslotMin != null">
+        lslot_min,
+      </if>
+      <if test="lslotMax != null">
+        lslot_max,
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average,
+      </if>
+      <if test="rslotMin != null">
+        rslot_min,
+      </if>
+      <if test="rslotMax != null">
+        rslot_max,
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average,
+      </if>
+      <if test="motorDate != null">
+        motor_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        #{motorNum,jdbcType=TINYINT},
+      </if>
+      <if test="motorSpeed != null">
+        #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        #{lgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="lgapMin != null">
+        #{lgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="lgapAverage != null">
+        #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        #{rgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="rgapMin != null">
+        #{rgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="rgapAverage != null">
+        #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        #{lslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="lslotMax != null">
+        #{lslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="lslotAverage != null">
+        #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        #{rslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="rslotMax != null">
+        #{rslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="rslotAverage != null">
+        #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        motor_num = #{motorNum,jdbcType=TINYINT},
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        temp_max = #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        temp_min = #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        temp_average = #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        lgap_max = #{lgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="lgapMin != null">
+        lgap_min = #{lgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        rgap_max = #{rgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="rgapMin != null">
+        rgap_min = #{rgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        lslot_min = #{lslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="lslotMax != null">
+        lslot_max = #{lslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        rslot_min = #{rslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="rslotMax != null">
+        rslot_max = #{rslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        motor_date = #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    set train_id = #{trainId,jdbcType=BIGINT},
+      motor_num = #{motorNum,jdbcType=TINYINT},
+      motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      temp_max = #{tempMax,jdbcType=DOUBLE},
+      temp_min = #{tempMin,jdbcType=DOUBLE},
+      temp_average = #{tempAverage,jdbcType=DOUBLE},
+      lgap_max = #{lgapMax,jdbcType=TINYINT},
+      lgap_min = #{lgapMin,jdbcType=TINYINT},
+      lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      rgap_max = #{rgapMax,jdbcType=TINYINT},
+      rgap_min = #{rgapMin,jdbcType=TINYINT},
+      rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      lslot_min = #{lslotMin,jdbcType=TINYINT},
+      lslot_max = #{lslotMax,jdbcType=TINYINT},
+      lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      rslot_min = #{rslotMin,jdbcType=TINYINT},
+      rslot_max = #{rslotMax,jdbcType=TINYINT},
+      rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      motor_date = #{motorDate,jdbcType=TIMESTAMP}
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.MotorInfo">
+    <constructor>
+      <idArg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="motor_num" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="motor_speed" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_max" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_min" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="temp_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lgap_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rgap_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rgap_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lslot_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="lslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_min" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rslot_max" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="rslot_average" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    motor_id, train_id, motor_num, motor_speed, temp_max, temp_min, temp_average, lgap_max, 
+    lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max, lslot_average, 
+    rslot_min, rslot_max, rslot_average, motor_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from motor_info
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info (motor_id, train_id, motor_num, 
+      motor_speed, temp_max, temp_min, 
+      temp_average, lgap_max, lgap_min, 
+      lgap_average, rgap_max, rgap_min, 
+      rgap_average, lslot_min, lslot_max, 
+      lslot_average, rslot_min, rslot_max, 
+      rslot_average, motor_date)
+    values (#{motorId,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=TINYINT}, 
+      #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE}, 
+      #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=TINYINT}, #{lgapMin,jdbcType=TINYINT}, 
+      #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=TINYINT}, #{rgapMin,jdbcType=TINYINT}, 
+      #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=TINYINT}, #{lslotMax,jdbcType=TINYINT}, 
+      #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=TINYINT}, #{rslotMax,jdbcType=TINYINT}, 
+      #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    insert into motor_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="motorNum != null">
+        motor_num,
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed,
+      </if>
+      <if test="tempMax != null">
+        temp_max,
+      </if>
+      <if test="tempMin != null">
+        temp_min,
+      </if>
+      <if test="tempAverage != null">
+        temp_average,
+      </if>
+      <if test="lgapMax != null">
+        lgap_max,
+      </if>
+      <if test="lgapMin != null">
+        lgap_min,
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average,
+      </if>
+      <if test="rgapMax != null">
+        rgap_max,
+      </if>
+      <if test="rgapMin != null">
+        rgap_min,
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average,
+      </if>
+      <if test="lslotMin != null">
+        lslot_min,
+      </if>
+      <if test="lslotMax != null">
+        lslot_max,
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average,
+      </if>
+      <if test="rslotMin != null">
+        rslot_min,
+      </if>
+      <if test="rslotMax != null">
+        rslot_max,
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average,
+      </if>
+      <if test="motorDate != null">
+        motor_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        #{motorNum,jdbcType=TINYINT},
+      </if>
+      <if test="motorSpeed != null">
+        #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        #{lgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="lgapMin != null">
+        #{lgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="lgapAverage != null">
+        #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        #{rgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="rgapMin != null">
+        #{rgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="rgapAverage != null">
+        #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        #{lslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="lslotMax != null">
+        #{lslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="lslotAverage != null">
+        #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        #{rslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="rslotMax != null">
+        #{rslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="rslotAverage != null">
+        #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="motorNum != null">
+        motor_num = #{motorNum,jdbcType=TINYINT},
+      </if>
+      <if test="motorSpeed != null">
+        motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMax != null">
+        temp_max = #{tempMax,jdbcType=DOUBLE},
+      </if>
+      <if test="tempMin != null">
+        temp_min = #{tempMin,jdbcType=DOUBLE},
+      </if>
+      <if test="tempAverage != null">
+        temp_average = #{tempAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapMax != null">
+        lgap_max = #{lgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="lgapMin != null">
+        lgap_min = #{lgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="lgapAverage != null">
+        lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapMax != null">
+        rgap_max = #{rgapMax,jdbcType=TINYINT},
+      </if>
+      <if test="rgapMin != null">
+        rgap_min = #{rgapMin,jdbcType=TINYINT},
+      </if>
+      <if test="rgapAverage != null">
+        rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotMin != null">
+        lslot_min = #{lslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="lslotMax != null">
+        lslot_max = #{lslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="lslotAverage != null">
+        lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotMin != null">
+        rslot_min = #{rslotMin,jdbcType=TINYINT},
+      </if>
+      <if test="rslotMax != null">
+        rslot_max = #{rslotMax,jdbcType=TINYINT},
+      </if>
+      <if test="rslotAverage != null">
+        rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      </if>
+      <if test="motorDate != null">
+        motor_date = #{motorDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.MotorInfo">
+    update motor_info
+    set train_id = #{trainId,jdbcType=BIGINT},
+      motor_num = #{motorNum,jdbcType=TINYINT},
+      motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+      temp_max = #{tempMax,jdbcType=DOUBLE},
+      temp_min = #{tempMin,jdbcType=DOUBLE},
+      temp_average = #{tempAverage,jdbcType=DOUBLE},
+      lgap_max = #{lgapMax,jdbcType=TINYINT},
+      lgap_min = #{lgapMin,jdbcType=TINYINT},
+      lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+      rgap_max = #{rgapMax,jdbcType=TINYINT},
+      rgap_min = #{rgapMin,jdbcType=TINYINT},
+      rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+      lslot_min = #{lslotMin,jdbcType=TINYINT},
+      lslot_max = #{lslotMax,jdbcType=TINYINT},
+      lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+      rslot_min = #{rslotMin,jdbcType=TINYINT},
+      rslot_max = #{rslotMax,jdbcType=TINYINT},
+      rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+      motor_date = #{motorDate,jdbcType=TIMESTAMP}
+    where motor_id = #{motorId,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByTrainIdOrderByMotorNum" resultMap="BaseResultMap" parameterType="Long">
+    select
+    <include refid="Base_Column_List" />
+    from motor_info
+    where train_id = #{trainId}
+    order by motor_num
+  </select>
+
+  <select id="findByTrainIdAndMotorNum" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from motor_info
+    where train_id = #{trainId}
+    and motor_id=#{motorNum}
+  </select>
+
+
+</mapper>

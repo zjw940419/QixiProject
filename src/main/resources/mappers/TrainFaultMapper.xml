@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njust.mapper.TrainFaultMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.TrainFault">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="fault_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="train_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, train_id, fault_type, train_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault (id, train_id, fault_type, 
+      train_date)
+    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{faultType,jdbcType=INTEGER}, 
+      #{trainDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="trainDate != null">
+        train_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null">
+        #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        fault_type = #{faultType,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null">
+        train_date = #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    set train_id = #{trainId,jdbcType=BIGINT},
+      fault_type = #{faultType,jdbcType=INTEGER},
+      train_date = #{trainDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.TrainFault">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="fault_type" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="train_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, train_id, fault_type, train_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault (id, train_id, fault_type, 
+      train_date)
+    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{faultType,jdbcType=TINYINT}, 
+      #{trainDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="trainDate != null">
+        train_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=TINYINT},
+      </if>
+      <if test="trainDate != null">
+        #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        fault_type = #{faultType,jdbcType=TINYINT},
+      </if>
+      <if test="trainDate != null">
+        train_date = #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    set train_id = #{trainId,jdbcType=BIGINT},
+      fault_type = #{faultType,jdbcType=TINYINT},
+      train_date = #{trainDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.TrainFault">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="train_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="fault_type" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="train_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, train_id, fault_type, train_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from train_fault
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault (id, train_id, fault_type, 
+      train_date)
+    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{faultType,jdbcType=TINYINT}, 
+      #{trainDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    insert into train_fault
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="trainDate != null">
+        train_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=TINYINT},
+      </if>
+      <if test="trainDate != null">
+        #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    <set>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=BIGINT},
+      </if>
+      <if test="faultType != null">
+        fault_type = #{faultType,jdbcType=TINYINT},
+      </if>
+      <if test="trainDate != null">
+        train_date = #{trainDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.TrainFault">
+    update train_fault
+    set train_id = #{trainId,jdbcType=BIGINT},
+      fault_type = #{faultType,jdbcType=TINYINT},
+      train_date = #{trainDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByTrainId" resultType="integer" parameterType="Long">
+    select
+    <include refid="Base_Column_List" />
+    from train_fault where train_id=#{trainId}
+  </select>
+</mapper>

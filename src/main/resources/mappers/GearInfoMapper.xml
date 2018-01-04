@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njust.mapper.GearInfoMapper">
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.GearInfo">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gear_num, lslot_value, rslot_value, lgap_value, rgap_value, lslot_depth, rslot_depth, 
+    motor_id, gear_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info (id, gear_num, lslot_value, 
+      rslot_value, lgap_value, rgap_value, 
+      lslot_depth, rslot_depth, motor_id, 
+      gear_date)
+    values (#{id,jdbcType=BIGINT}, #{gearNum,jdbcType=INTEGER}, #{lslotValue,jdbcType=DOUBLE}, 
+      #{rslotValue,jdbcType=DOUBLE}, #{lgapValue,jdbcType=DOUBLE}, #{rgapValue,jdbcType=DOUBLE}, 
+      #{lslotDepth,jdbcType=DOUBLE}, #{rslotDepth,jdbcType=DOUBLE}, #{motorId,jdbcType=BIGINT}, 
+      #{gearDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gearNum != null">
+        gear_num,
+      </if>
+      <if test="lslotValue != null">
+        lslot_value,
+      </if>
+      <if test="rslotValue != null">
+        rslot_value,
+      </if>
+      <if test="lgapValue != null">
+        lgap_value,
+      </if>
+      <if test="rgapValue != null">
+        rgap_value,
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth,
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth,
+      </if>
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="gearDate != null">
+        gear_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gearNum != null">
+        #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    <set>
+      <if test="gearNum != null">
+        gear_num = #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        motor_id = #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        gear_date = #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    set gear_num = #{gearNum,jdbcType=INTEGER},
+      lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      motor_id = #{motorId,jdbcType=BIGINT},
+      gear_date = #{gearDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.GearInfo">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gear_num, lslot_value, rslot_value, lgap_value, rgap_value, lslot_depth, rslot_depth, 
+    motor_id, gear_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info (id, gear_num, lslot_value, 
+      rslot_value, lgap_value, rgap_value, 
+      lslot_depth, rslot_depth, motor_id, 
+      gear_date)
+    values (#{id,jdbcType=BIGINT}, #{gearNum,jdbcType=INTEGER}, #{lslotValue,jdbcType=DOUBLE}, 
+      #{rslotValue,jdbcType=DOUBLE}, #{lgapValue,jdbcType=DOUBLE}, #{rgapValue,jdbcType=DOUBLE}, 
+      #{lslotDepth,jdbcType=DOUBLE}, #{rslotDepth,jdbcType=DOUBLE}, #{motorId,jdbcType=BIGINT}, 
+      #{gearDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gearNum != null">
+        gear_num,
+      </if>
+      <if test="lslotValue != null">
+        lslot_value,
+      </if>
+      <if test="rslotValue != null">
+        rslot_value,
+      </if>
+      <if test="lgapValue != null">
+        lgap_value,
+      </if>
+      <if test="rgapValue != null">
+        rgap_value,
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth,
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth,
+      </if>
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="gearDate != null">
+        gear_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gearNum != null">
+        #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    <set>
+      <if test="gearNum != null">
+        gear_num = #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        motor_id = #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        gear_date = #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    set gear_num = #{gearNum,jdbcType=INTEGER},
+      lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      motor_id = #{motorId,jdbcType=BIGINT},
+      gear_date = #{gearDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mmall.QixiPojo.GearInfo">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rgap_value" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="rslot_depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="motor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="gear_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gear_num, lslot_value, rslot_value, lgap_value, rgap_value, lslot_depth, rslot_depth, 
+    motor_id, gear_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gear_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info (id, gear_num, lslot_value, 
+      rslot_value, lgap_value, rgap_value, 
+      lslot_depth, rslot_depth, motor_id, 
+      gear_date)
+    values (#{id,jdbcType=BIGINT}, #{gearNum,jdbcType=INTEGER}, #{lslotValue,jdbcType=DOUBLE}, 
+      #{rslotValue,jdbcType=DOUBLE}, #{lgapValue,jdbcType=DOUBLE}, #{rgapValue,jdbcType=DOUBLE}, 
+      #{lslotDepth,jdbcType=DOUBLE}, #{rslotDepth,jdbcType=DOUBLE}, #{motorId,jdbcType=BIGINT}, 
+      #{gearDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    insert into gear_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gearNum != null">
+        gear_num,
+      </if>
+      <if test="lslotValue != null">
+        lslot_value,
+      </if>
+      <if test="rslotValue != null">
+        rslot_value,
+      </if>
+      <if test="lgapValue != null">
+        lgap_value,
+      </if>
+      <if test="rgapValue != null">
+        rgap_value,
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth,
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth,
+      </if>
+      <if test="motorId != null">
+        motor_id,
+      </if>
+      <if test="gearDate != null">
+        gear_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gearNum != null">
+        #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    <set>
+      <if test="gearNum != null">
+        gear_num = #{gearNum,jdbcType=INTEGER},
+      </if>
+      <if test="lslotValue != null">
+        lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotValue != null">
+        rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lgapValue != null">
+        lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rgapValue != null">
+        rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lslotDepth != null">
+        lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="rslotDepth != null">
+        rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      </if>
+      <if test="motorId != null">
+        motor_id = #{motorId,jdbcType=BIGINT},
+      </if>
+      <if test="gearDate != null">
+        gear_date = #{gearDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.QixiPojo.GearInfo">
+    update gear_info
+    set gear_num = #{gearNum,jdbcType=INTEGER},
+      lslot_value = #{lslotValue,jdbcType=DOUBLE},
+      rslot_value = #{rslotValue,jdbcType=DOUBLE},
+      lgap_value = #{lgapValue,jdbcType=DOUBLE},
+      rgap_value = #{rgapValue,jdbcType=DOUBLE},
+      lslot_depth = #{lslotDepth,jdbcType=DOUBLE},
+      rslot_depth = #{rslotDepth,jdbcType=DOUBLE},
+      motor_id = #{motorId,jdbcType=BIGINT},
+      gear_date = #{gearDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByMotorId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT
+    <include refid="Base_Column_List" />
+    from gear_info
+    WHERE motor_id=#{motorId}
+  </select>
+
+  <select id="findByMotorIdAndGearNum" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from gear_info
+    WHERE motor_id=#{motorId} and gear_num=#{gearNum}
+  </select>
+
+</mapper>
