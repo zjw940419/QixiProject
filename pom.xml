@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Qixi</groupId>
   <artifactId>Qixi</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <version>1.0-SNAPSHOT</version>
   <name>Qixi</name>
-  <url>http://maven.apache.org</url>
+
 
   <parent>
     <groupId>org.springframework.boot</groupId>
