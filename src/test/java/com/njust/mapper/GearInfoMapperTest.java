@@ -1,6 +1,6 @@
-package com.njust.repository;
+package com.njust.mapper;
 
-import com.njust.mapper.TrainFaultMapper;
+import com.njust.dataobject.GearInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +10,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 /**
- * Created by zhujiawei on 2017/12/28.
+ * Created by zhujiawei on 2018/1/4.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TrainFaultRepositoryTest {
+public class GearInfoMapperTest {
+
     @Autowired
-    private TrainFaultMapper trainFaultMapper;
+    private GearInfoMapper gearInfoMapper;
+
     @Test
-    public void findByTrainId() throws Exception {
-        int result = trainFaultMapper.findByTrainId(new Long(1));
-        System.out.println(result);
+    public void selectByPrimaryKey() throws Exception {
+        GearInfo gearInfo = gearInfoMapper.selectByPrimaryKey(new Long(1));
+        System.out.println(gearInfo);
     }
 
 }

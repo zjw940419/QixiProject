@@ -2,10 +2,10 @@ package com.njust.service.Impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.njust.mapper.GearInfoMapper;
-import com.njust.mapper.MotorInfoMapper;
-import com.njust.mapper.TrainDataMapper;
-import com.njust.mapper.TrainInfoMapper;
+
+import com.njust.dataobject.*;
+import com.njust.mapper.*;
+
 import com.njust.service.TrainService;
 import com.njust.utils.StringUtil;
 import com.njust.vo.ResultVO;
@@ -13,6 +13,8 @@ import com.njust.vo.TrainDataVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +37,10 @@ public class TrainServiceImpl implements TrainService {
     @Autowired
     private GearInfoMapper gearInfoMapper;
 
+    @Autowired
+    private TrainSpecialDataMapper trainSpecialDataMapper;
+
+
     /**
      * 根据列车记录编号查询出 列车的综合信息
      * @param trainId
@@ -43,7 +49,7 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public ResultVO findTrainInfoByTrainId(Long trainId) {
         ResultVO resultVO=new ResultVO();
-        resultVO.setData(this.findTrainInfoByTrainId(trainId));
+        resultVO.setData(this.findByTrainId(trainId));
         return resultVO;
     }
 
@@ -70,6 +76,21 @@ public class TrainServiceImpl implements TrainService {
     }
 
     /**
+     * 返回当日的最后10条气隙最小的数据
+     * @return
+     */
+    public TrainSpecialData TodayLast10(Date pre,Date after){
+        //查出10记录
+        List<TrainSpecialData> trainSpecialDataList
+                = trainSpecialDataMapper.findMinInfoByDatetime(pre, after);
+        //根据十条记录的ID查询出具体的内容
+        for (TrainSpecialData trainSpecialData:trainSpecialDataList){
+            TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainSpecialData.getTrainId());
+
+        }
+    }
+
+    /**
      * 分装的函数 根据列车记录的ID查询到列车的VO信息
      * @param trainId
      * @return
@@ -79,7 +100,7 @@ public class TrainServiceImpl implements TrainService {
 
         TrainDataVO trainDataVO=new TrainDataVO();
         TrainData trainData = trainDataMapper.selectByPrimaryKey(trainId);
-        TrainInfo trainInfo = trainInfoMapper.findTrainInfoByTrainId(trainId);
+        TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainId);
         //直系属性进行复制
         BeanUtils.copyProperties(trainData,trainDataVO);
         BeanUtils.copyProperties(trainInfo,trainDataVO);

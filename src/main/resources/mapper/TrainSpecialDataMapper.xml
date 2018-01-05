@@ -2,13 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.TrainSpecialDataMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainSpecialData" >
-    <id column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
-    <result column="tlgap_min" property="tlgapMin" jdbcType="DOUBLE" />
-    <result column="trgap_min" property="trgapMin" jdbcType="DOUBLE" />
-    <result column="slgap_min" property="slgapMin" jdbcType="DOUBLE" />
-    <result column="srgap_min" property="srgapMin" jdbcType="DOUBLE" />
-    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
+    <constructor >
+      <idArg column="train_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="motor_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tlgap_min" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="trgap_min" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="slgap_min" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="srgap_min" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="train_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,6 +78,7 @@
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from train_specialdata
     <if test="_parameter != null" >
@@ -240,4 +243,12 @@
       train_date = #{trainDate,jdbcType=TIMESTAMP}
     where train_id = #{trainId,jdbcType=BIGINT}
   </update>
+
+  <select id="findMinInfoByDatetime" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from train_specialdata
+    WHERE train_date BETWEEN #{preDatetime} and #{afterDatetime}
+    order by tlgap_min limit 10
+  </select>
 </mapper>

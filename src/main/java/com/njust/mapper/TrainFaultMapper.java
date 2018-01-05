@@ -27,4 +27,6 @@ public interface TrainFaultMapper {
     int updateByPrimaryKeySelective(TrainFault record);
 
     int updateByPrimaryKey(TrainFault record);
+
+    int findByTrainId(Long trainId);
 }

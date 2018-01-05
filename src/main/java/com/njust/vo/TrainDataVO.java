@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 public class TrainDataVO{
     /**隐藏字段 列车记录编号*/
-    private Integer trainId;
+    private Long trainId;
 
     /**列车车牌号*/
     private String trainNum;

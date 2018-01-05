@@ -10,9 +10,9 @@ spring:
     default-property-inclusion: non_null
 server:
   port: 8080
+
 mybatis:
-  configuration:
-    call-setters-on-nulls: true
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.njust.dataobject
 logging:
   level: debug
-

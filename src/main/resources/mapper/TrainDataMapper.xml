@@ -415,4 +415,10 @@
       train_date = #{trainDate,jdbcType=TIMESTAMP}
     where train_id = #{trainId,jdbcType=BIGINT}
   </update>
+  <select id="findByTrainDateBetween" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from train_data
+    where train_date BETWEEN #{pre} and #{after}
+  </select>
 </mapper>

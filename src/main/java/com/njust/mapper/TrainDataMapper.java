@@ -2,6 +2,8 @@ package com.njust.mapper;
 
 import com.njust.dataobject.TrainData;
 import com.njust.dataobject.TrainDataExample;
+
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,8 @@ public interface TrainDataMapper {
     int updateByPrimaryKeySelective(TrainData record);
 
     int updateByPrimaryKey(TrainData record);
+
+    //筛选一定范围的列车综合数据
+    List<TrainData> findByTrainDateBetween(@Param("pre") Date pre, @Param("after") Date after);
+
 }

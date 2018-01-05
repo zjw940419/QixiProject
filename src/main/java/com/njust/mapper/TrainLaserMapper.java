@@ -3,6 +3,8 @@ package com.njust.mapper;
 import com.njust.dataobject.TrainLaser;
 import com.njust.dataobject.TrainLaserExample;
 import java.util.List;
+
+import com.njust.vo.TrainLaserData;
 import org.apache.ibatis.annotations.Param;
 
 public interface TrainLaserMapper {
@@ -27,4 +29,7 @@ public interface TrainLaserMapper {
     int updateByPrimaryKeySelective(TrainLaser record);
 
     int updateByPrimaryKey(TrainLaser record);
+
+    List<TrainLaser> findByTrainIdAndMotorNum(@Param("trainId") Long trainId, @Param("motorNum") Integer motorNum);
+
 }

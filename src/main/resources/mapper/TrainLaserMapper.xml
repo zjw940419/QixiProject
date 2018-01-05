@@ -225,4 +225,10 @@
       motor_num = #{motorNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="findByTrainIdAndMotorNum" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from train_laser where train_id=#{trainId} and motor_num=#{motorNum}
+  </select>
 </mapper>

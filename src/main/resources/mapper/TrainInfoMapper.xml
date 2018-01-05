@@ -256,4 +256,16 @@
       insert_time = #{insertTime,jdbcType=TIMESTAMP}
     where train_id = #{trainId,jdbcType=BIGINT}
   </update>
+
+  <select id="findTrainInfoByLastTrainId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM train_info order by train_id desc LIMIT 1
+  </select>
+
+  <select id="findTrainInfoByDatetime" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from train_info where train_date between #{preDatetime} and #{afterDatetime}
+  </select>
 </mapper>

@@ -1,9 +1,15 @@
 package com.njust.service.Impl;
 
+
+import com.njust.dataobject.GearInfo;
+import com.njust.dataobject.MotorInfo;
+import com.njust.dataobject.TrainInfo;
+import com.njust.dataobject.TrainLaser;
 import com.njust.mapper.GearInfoMapper;
 import com.njust.mapper.MotorInfoMapper;
 import com.njust.mapper.TrainInfoMapper;
 import com.njust.mapper.TrainLaserMapper;
+
 import com.njust.service.MotorService;
 import com.njust.utils.StringUtil;
 import com.njust.vo.MotorDataVO;
@@ -52,7 +58,7 @@ public class MotorServiceImpl implements MotorService {
     public ResultVO findByTrainIdAndMotorNum(Long trainId, Integer motorNum) {
         Map<String,List<Double>> map=new HashMap<>();
         ResultVO<Map<String,List<Double>>> resultVO=new ResultVO<>();
-        List<TrainLaserData> trainLaserDataList = trainLaserMapper.findByTrainIdAndMotorNum(trainId, motorNum);
+        List<TrainLaser> trainLaserDataList = trainLaserMapper.findByTrainIdAndMotorNum(trainId, motorNum);
         //数据的封装 左右激光数据加入
         List<Double> leftLaserData=trainLaserDataList.stream().map(e->
                 new Double(e.getLeftLaser())

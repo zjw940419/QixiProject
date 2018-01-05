@@ -445,4 +445,20 @@
       motor_date = #{motorDate,jdbcType=TIMESTAMP}
     where motor_id = #{motorId,jdbcType=BIGINT}
   </update>
+
+  <select id="findByTrainIdOrderByMotorNum" resultMap="BaseResultMap" parameterType="Long">
+    select
+    <include refid="Base_Column_List" />
+    from motor_info
+    where train_id = #{trainId}
+    order by motor_num
+  </select>
+
+  <select id="findByTrainIdAndMotorNum" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from motor_info
+    where train_id = #{trainId}
+    and motor_id=#{motorNum}
+  </select>
 </mapper>

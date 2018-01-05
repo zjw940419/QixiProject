@@ -18,7 +18,7 @@ public class MotorDataVO implements Serializable{
     private static final long serialVersionUID = 4057832510767098814L;
 
     /**隐藏字段 列车记录编号*/
-    private Integer trainId;
+    private Long trainId;
 
     /**列车车牌号*/
     private String trainNum;
