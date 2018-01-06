@@ -27,9 +27,10 @@ public class TrainDataVO{
     /**列车状态*/
     private Integer trainState;
 
-    /**列车行驶时间*/
-    @JsonSerialize(using = Date2LongSerializer.class)
-    private Date trainDate;
+    /**列车行驶时间
+     * 采用String格式返回
+     * */
+    private String trainDate;
 
     /**列车温度最大值编号+数据 返回前端一个字符串类型*/
     private String tempMax;
