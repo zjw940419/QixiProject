@@ -7,7 +7,9 @@ import com.njust.dataobject.*;
 import com.njust.mapper.*;
 
 import com.njust.service.TrainService;
+import com.njust.utils.PageBean;
 import com.njust.utils.StringUtil;
+import com.njust.vo.QixiMinVO;
 import com.njust.vo.ResultVO;
 import com.njust.vo.TrainDataVO;
 import org.springframework.beans.BeanUtils;
@@ -54,40 +56,53 @@ public class TrainServiceImpl implements TrainService {
     }
 
     /**
-     * 根据时间 返回当日的行车数据 形成分页报表每页显示26条
+     * 根据时间 返回当日的行车数据 形成分页报表每页显示26条  已经完成分页功能
      * @param pre
      * @param after
      * @return
      */
     public ResultVO findByTrainDate(Date pre,Date after,Integer page,Integer size){
-        PageHelper.startPage(page,size);
+        //设置分页信息
         ResultVO resultVO=new ResultVO();
+        PageHelper.startPage(page,size);
         List<TrainData> trainDataList = trainDataMapper.findByTrainDateBetween(pre, after);
-
         List<TrainDataVO> trainDataVOList=new ArrayList<>();
-        PageInfo<TrainDataVO> pageInfo=new PageInfo();
+
         for (TrainData trainData:trainDataList){
             TrainDataVO trainDataVO= this.findByTrainId(trainData.getTrainId());
             trainDataVOList.add(trainDataVO);
         }
-        pageInfo.setList(trainDataVOList);
+        PageInfo<TrainDataVO> pageInfo=new PageInfo<>(trainDataVOList);
         resultVO.setData(pageInfo);
         return resultVO;
     }
 
     /**
-     * 返回当日的最后10条气隙最小的数据
+     * 当日运营结束返回 定时返回的数据
+     * @param pre
+     * @param after
      * @return
      */
-    public TrainSpecialData TodayLast10(Date pre,Date after){
+    public ResultVO TodayLast10(Date pre,Date after){
+        ResultVO resultVO=new ResultVO();
+        List<QixiMinVO> qixiMinVOList=new ArrayList<>();
         //查出10记录
         List<TrainSpecialData> trainSpecialDataList
                 = trainSpecialDataMapper.findMinInfoByDatetime(pre, after);
         //根据十条记录的ID查询出具体的内容
         for (TrainSpecialData trainSpecialData:trainSpecialDataList){
+            QixiMinVO qixiMinVO=new QixiMinVO();
             TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainSpecialData.getTrainId());
-
+            qixiMinVO.setTrainNumber(trainInfo.getTrainNumber());
+            qixiMinVO.setControlNum(trainInfo.getControlNum());
+            qixiMinVO.setTrainDate(trainInfo.getTrainDate());
+            qixiMinVO.setMotorNum(trainSpecialData.getMotorNum());
+            qixiMinVO.setTlgapMin(trainSpecialData.getTlgapMin());
+            qixiMinVO.setSlgapMin(trainSpecialData.getSlgapMin());
+            qixiMinVOList.add(qixiMinVO);
         }
+        resultVO.setData(qixiMinVOList);
+        return resultVO;
     }
 
     /**
@@ -145,7 +160,7 @@ public class TrainServiceImpl implements TrainService {
             if(motorInfo.getMotorNum()==trainData.getRslotMin()){
                 GearInfo RslotInfo = gearInfoMapper
                         .findByMotorIdAndGearNum(motorInfo.getMotorId(), motorInfo.getRslotMin());
-                trainDataVO.setRslotMin(StringUtil.changeStr(RslotInfo.getLslotDepth(),trainData.getRslotMin()));
+                trainDataVO.setRslotMin(StringUtil.changeStr(RslotInfo.getRslotDepth(),trainData.getRslotMin()));
             }
             //电机温度的数据处理
             if(motorInfo.getMotorNum()==trainData.getTempMax()){

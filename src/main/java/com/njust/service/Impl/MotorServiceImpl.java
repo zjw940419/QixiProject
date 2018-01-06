@@ -87,7 +87,7 @@ public class MotorServiceImpl implements MotorService {
         //筛选出8条记录 电机
         List<MotorInfo> motorInfoList = motorInfoMapper.findByTrainIdOrderByMotorNum(trainId);
         //查询主表
-        TrainInfo trainInfo = trainInfoMapper.findTrainInfoByTrainId(trainId);
+        TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainId);
         //基本信息进行复制
         BeanUtils.copyProperties(trainInfo,motorDataVO);
         //处理八个电机的具体数据

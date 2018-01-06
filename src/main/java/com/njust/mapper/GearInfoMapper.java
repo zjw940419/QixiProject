@@ -33,4 +33,8 @@ public interface GearInfoMapper {
 
     //根据电机编号查询齿数据
     List<GearInfo> findByMotorId(Long motorId);
+
+    List<GearInfo> findByMotorIdAndInGearNum(@Param("motorId") Long motorId, @Param("firstGearNum") Integer firstGearNum,
+                                             @Param("secondGearNum")Integer secondGearNum);
+
 }

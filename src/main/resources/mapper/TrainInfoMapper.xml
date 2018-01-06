@@ -268,4 +268,11 @@
     <include refid="Base_Column_List" />
     from train_info where train_date between #{preDatetime} and #{afterDatetime}
   </select>
+
+  <select id="findByTrainDateAndDirection" resultMap="BaseResultMap" parameterType="map">
+  select
+  <include refid="Base_Column_List" />
+  from train_info where train_direction=#{trainDirection} and train_number=#{trainNumber} and
+  train_date between #{preDatetime} and #{afterDatetime}
+  </select>
 </mapper>

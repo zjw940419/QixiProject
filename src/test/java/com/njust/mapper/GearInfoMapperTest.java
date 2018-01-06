@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -23,6 +25,12 @@ public class GearInfoMapperTest {
     public void selectByPrimaryKey() throws Exception {
         GearInfo gearInfo = gearInfoMapper.selectByPrimaryKey(new Long(1));
         System.out.println(gearInfo);
+    }
+
+    @Test
+    public void test(){
+        List<GearInfo> gearInfoList = gearInfoMapper.findByMotorIdAndInGearNum(new Long(1), 1, 2);
+        System.out.println(gearInfoList.size());
     }
 
 }

@@ -10,19 +10,18 @@ import java.util.Date;
  */
 public class DateUtil {
     //时间类型转换的格式
-    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 
-    //Long类型数据转为Date的数据
-    public static Date Long2Date(String time){
-        return new Date(Long.parseLong(time));
-    }
-    //将string类型的数据转为Date类型的数据
-    public static Date String2Date(String time) throws ParseException {
-        return format.parse(time);
+    /**
+     * 将字符串转为String类型
+     * @param time
+     * @return
+     */
+    public static String Date2String(Date time){
+         return format.format(time);
     }
 
-    public static void main(String[] args) {
-        Date date = DateUtil.Long2Date("1503014400000");
-        System.out.println(date);
+    public static Date String2Date(String date) throws ParseException {
+        return format.parse(date);
     }
 }

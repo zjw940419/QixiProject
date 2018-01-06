@@ -17,6 +17,20 @@ public class TrainSpecialData {
 
     private Date trainDate;
 
+    public TrainSpecialData(Long trainId, Integer motorNum, Double tlgapMin, Double trgapMin, Double slgapMin, Double srgapMin, Date trainDate) {
+        this.trainId = trainId;
+        this.motorNum = motorNum;
+        this.tlgapMin = tlgapMin;
+        this.trgapMin = trgapMin;
+        this.slgapMin = slgapMin;
+        this.srgapMin = srgapMin;
+        this.trainDate = trainDate;
+    }
+
+    public TrainSpecialData() {
+        super();
+    }
+
     public Long getTrainId() {
         return trainId;
     }

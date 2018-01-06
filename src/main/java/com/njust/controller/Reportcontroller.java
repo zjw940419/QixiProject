@@ -89,9 +89,9 @@ public class Reportcontroller {
     @GetMapping("/todayReport")
     @ResponseBody
     public ResultVO findByTrainDate(@RequestParam("pre")String pre,@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                             @RequestParam(value = "size",defaultValue = "1")Integer size) throws ParseException {
+                                             @RequestParam(value = "size",defaultValue = "2")Integer size) throws ParseException {
         //将Long类型的时间转为Date类型的数据
-        Date firsttime = DateUtil.Long2Date(pre);
+        Date firsttime = DateUtil.String2Date(pre);
         long time=firsttime.getTime()+86400000;
         Date lasttime=new Date(time);
         return trainService.findByTrainDate(firsttime,lasttime,page,size);

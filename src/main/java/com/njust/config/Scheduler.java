@@ -25,5 +25,4 @@ public class Scheduler {
     }
 
     //@Scheduled(cron = "50 16 20 * * ?")
-
 }

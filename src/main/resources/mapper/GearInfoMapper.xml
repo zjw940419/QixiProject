@@ -303,10 +303,11 @@
     WHERE motor_id=#{motorId} and gear_num=#{gearNum}
   </select>
 
-  <select id="findByMotorId" resultMap="BaseResultMap" parameterType="Long">
+
+  <select id="findByMotorIdAndInGearNum" parameterType="map" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from gear_info
-    WHERE motor_id=#{motorId}
+    WHERE motor_id=#{motorId} and gear_num in(#{firstGearNum},#{secondGearNum})
   </select>
 </mapper>

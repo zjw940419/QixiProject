@@ -36,4 +36,8 @@ public interface TrainInfoMapper {
     /**根据时间范围查询出符合条件的列车编号*/
     List<TrainInfo> findTrainInfoByDatetime(@Param("preDatetime") Date preDatetime
             , @Param("afterDatetime")Date afterDatetime);
+
+    List<TrainInfo> findByTrainDateAndDirection(@Param("preDatetime") Date preDatetime
+            , @Param("afterDatetime")Date afterDatetime,@Param("trainNumber") String trainNumber,
+                                                @Param("trainDirection") Integer trainDirection);
 }

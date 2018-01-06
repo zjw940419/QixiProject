@@ -15,4 +15,6 @@ public interface TrainService {
     TrainDataVO findByTrainId(Long trainId);
 
     ResultVO findByTrainDate(Date pre, Date after,Integer page,Integer size);
+
+    ResultVO TodayLast10(Date pre,Date after);
 }
