@@ -289,12 +289,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="findByMotorId" resultMap="BaseResultMap" parameterType="java.lang.Long">
-    SELECT
-    <include refid="Base_Column_List" />
-    from gear_info
-    WHERE motor_id=#{motorId}
-  </select>
+
 
   <select id="findByMotorIdAndGearNum" resultMap="BaseResultMap" parameterType="map">
     SELECT
