@@ -11,6 +11,18 @@ public class TrainParam {
 
     private Double tempAlarm;
 
+    public TrainParam(Long id, Double gapWarn, Double gapAlarm, Double tempWarn, Double tempAlarm) {
+        this.id = id;
+        this.gapWarn = gapWarn;
+        this.gapAlarm = gapAlarm;
+        this.tempWarn = tempWarn;
+        this.tempAlarm = tempAlarm;
+    }
+
+    public TrainParam() {
+        super();
+    }
+
     public Long getId() {
         return id;
     }

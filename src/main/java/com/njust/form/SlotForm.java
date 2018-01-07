@@ -9,7 +9,7 @@ public class SlotForm {
     //终止时间
     private String endTime;
     //列车编号
-    private String trainNumber;
+    private String trainId;
     //电机编号
     private Integer motorNum;
     //运行方向

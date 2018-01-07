@@ -1,8 +1,9 @@
 package com.njust.mapper;
 
+import java.util.List;
+
 import com.njust.dataobject.TrainTemp;
 import com.njust.dataobject.TrainTempExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TrainTempMapper {

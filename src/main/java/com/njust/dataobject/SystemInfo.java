@@ -23,6 +23,23 @@ public class SystemInfo {
 
     private Date trainDate;
 
+    public SystemInfo(Long id, Integer llaserState, Integer rlaserState, Integer tempState, Integer brushState, Integer edeviceState, Integer plcState, Integer dccState, Integer udFlag, Date trainDate) {
+        this.id = id;
+        this.llaserState = llaserState;
+        this.rlaserState = rlaserState;
+        this.tempState = tempState;
+        this.brushState = brushState;
+        this.edeviceState = edeviceState;
+        this.plcState = plcState;
+        this.dccState = dccState;
+        this.udFlag = udFlag;
+        this.trainDate = trainDate;
+    }
+
+    public SystemInfo() {
+        super();
+    }
+
     public Long getId() {
         return id;
     }

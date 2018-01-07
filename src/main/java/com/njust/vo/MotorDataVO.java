@@ -18,10 +18,10 @@ public class MotorDataVO implements Serializable{
     private static final long serialVersionUID = 4057832510767098814L;
 
     /**隐藏字段 列车记录编号*/
-    private Long trainId;
+    private Long trainOnlyid;
 
     /**列车车牌号*/
-    private String trainNum;
+    private String trainId;
 
     /**列车主控端*/
     private String controlNum;
@@ -34,7 +34,7 @@ public class MotorDataVO implements Serializable{
 
     /**列车行驶时间*/
     @JsonSerialize(using = Date2LongSerializer.class)
-    private Date trainDate;
+    private String trainDate;
 
     /**电机具体的数据*/
     private List<MotorVO> motorVOList;

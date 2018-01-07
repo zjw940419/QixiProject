@@ -14,7 +14,7 @@ public class SlotTendencyVO {
     private String TrainDate;
 
     /**列车的车牌号*/
-    private String TrainNumber;
+    private String TrainId;
 
     /**列车的行驶方向*/
     private Integer TrainDirection;

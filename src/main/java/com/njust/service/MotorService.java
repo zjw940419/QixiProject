@@ -10,16 +10,16 @@ import com.njust.vo.ResultVO;
 public interface MotorService {
     /**
      * 根据列车记录和电机编号 返回原始数据 用于显示折线图
-     * @param trainId
+     * @param trainOnlyid
      * @param motorNum
      * @return
      */
-    ResultVO findByTrainIdAndMotorNum(Long trainId, Integer motorNum);
+    ResultVO findByTrainOnlyidAndMotorNum(Long trainOnlyid, Integer motorNum);
 
     /**
      * 根据车号返回对应数据
-     * @param trainId
+     * @param trainOnlyid
      * @return
      */
-    ResultVO findByTrainId(Long trainId);
+    ResultVO findByTrainOnlyid(Long trainOnlyid);
 }

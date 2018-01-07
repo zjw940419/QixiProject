@@ -25,6 +25,24 @@ public class SystemCali {
 
     private Date createTime;
 
+    public SystemCali(Long id, Double lsensor1, Double lsensor2, Double lsensor3, Double rsensor1, Double rsensor2, Double rsensor3, Double lrailplane, Double rrailplane, Integer udFlag, Date createTime) {
+        this.id = id;
+        this.lsensor1 = lsensor1;
+        this.lsensor2 = lsensor2;
+        this.lsensor3 = lsensor3;
+        this.rsensor1 = rsensor1;
+        this.rsensor2 = rsensor2;
+        this.rsensor3 = rsensor3;
+        this.lrailplane = lrailplane;
+        this.rrailplane = rrailplane;
+        this.udFlag = udFlag;
+        this.createTime = createTime;
+    }
+
+    public SystemCali() {
+        super();
+    }
+
     public Long getId() {
         return id;
     }

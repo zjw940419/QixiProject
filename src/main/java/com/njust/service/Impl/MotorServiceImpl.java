@@ -15,7 +15,6 @@ import com.njust.utils.StringUtil;
 import com.njust.vo.MotorDataVO;
 import com.njust.vo.MotorVO;
 import com.njust.vo.ResultVO;
-import com.njust.vo.TrainLaserData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,15 +49,15 @@ public class MotorServiceImpl implements MotorService {
 
     /**
      * 查询dao层 返回左右激光原始数据
-     * @param trainId
+     * @param trainOnlyid
      * @param motorNum
      * @return
      */
     @Override
-    public ResultVO findByTrainIdAndMotorNum(Long trainId, Integer motorNum) {
+    public ResultVO findByTrainOnlyidAndMotorNum(Long trainOnlyid, Integer motorNum) {
         Map<String,List<Double>> map=new HashMap<>();
         ResultVO<Map<String,List<Double>>> resultVO=new ResultVO<>();
-        List<TrainLaser> trainLaserDataList = trainLaserMapper.findByTrainIdAndMotorNum(trainId, motorNum);
+        List<TrainLaser> trainLaserDataList = trainLaserMapper.findByTrainIdAndMotorNum(trainOnlyid, motorNum);
         //数据的封装 左右激光数据加入
         List<Double> leftLaserData=trainLaserDataList.stream().map(e->
                 new Double(e.getLeftLaser())
@@ -75,19 +74,19 @@ public class MotorServiceImpl implements MotorService {
     }
     /**
      * 根据车号 返回电机的详细报表
-     * @param trainId
+     * @param trainOnlyid
      * @return
      */
     @Override
-    public ResultVO findByTrainId(Long trainId){
+    public ResultVO findByTrainOnlyid(Long trainOnlyid){
 
         ResultVO resultVO=new ResultVO();
         MotorDataVO motorDataVO=new MotorDataVO();
         List<MotorVO> motorVOList=new ArrayList<>();
         //筛选出8条记录 电机
-        List<MotorInfo> motorInfoList = motorInfoMapper.findByTrainIdOrderByMotorNum(trainId);
+        List<MotorInfo> motorInfoList = motorInfoMapper.findByTrainIdOrderByMotorNum(trainOnlyid);
         //查询主表
-        TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainId);
+        TrainInfo trainInfo = trainInfoMapper.selectByPrimaryKey(trainOnlyid);
         //基本信息进行复制
         BeanUtils.copyProperties(trainInfo,motorDataVO);
         //处理八个电机的具体数据

@@ -11,7 +11,7 @@ import java.text.ParseException;
 public interface GearService {
 
     //根据电机关联编号查询出所有的齿数据
-    ResultVO findByTrainIdAndMotorId(Long trainId, Integer motorNum);
+    ResultVO findByTrainOnlyidAndMotorId(Long trainOnlyid, Integer motorNum);
 
     ResultVO slotTrendencyQuery(SlotForm slotForm) throws ParseException;
 }

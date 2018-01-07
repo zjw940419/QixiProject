@@ -1,8 +1,10 @@
 package com.njust.service;
 
+import com.njust.form.TodayQueryForm;
 import com.njust.vo.ResultVO;
 import com.njust.vo.TrainDataVO;
 
+import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -10,11 +12,13 @@ import java.util.Date;
  */
 public interface TrainService {
 
-    ResultVO findTrainInfoByTrainId(Long trainId);
+    ResultVO findTrainInfoByTrainOnlyid(Long trainOnlyid);
 
-    TrainDataVO findByTrainId(Long trainId);
+    TrainDataVO findByTrainOnlyid(Long trainOnlyid);
 
-    ResultVO findByTrainDate(Date pre, Date after,Integer page,Integer size);
+    ResultVO findByTrainDate(Date pre,Date after,Integer page,Integer size);
 
-    ResultVO TodayLast10(Date pre,Date after);
+    ResultVO todayLast10(Date pre,Date after);
+
+    ResultVO TodayQuery(TodayQueryForm todayQueryForm) throws ParseException;
 }

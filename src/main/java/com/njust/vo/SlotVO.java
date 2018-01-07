@@ -2,6 +2,9 @@ package com.njust.vo;
 
 import lombok.Data;
 
+/**
+ * 槽楔趋势的一个小VO
+ */
 @Data
 public class SlotVO {
     /**齿编号*/

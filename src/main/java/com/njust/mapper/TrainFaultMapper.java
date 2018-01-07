@@ -1,8 +1,9 @@
 package com.njust.mapper;
 
+import java.util.List;
+
 import com.njust.dataobject.TrainFault;
 import com.njust.dataobject.TrainFaultExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TrainFaultMapper {
@@ -28,5 +29,5 @@ public interface TrainFaultMapper {
 
     int updateByPrimaryKey(TrainFault record);
 
-    int findByTrainId(Long trainId);
+    TrainFault findByTrainOnlyid(Long trainOnlyid);
 }

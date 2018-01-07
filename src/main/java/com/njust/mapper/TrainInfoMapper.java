@@ -1,10 +1,10 @@
 package com.njust.mapper;
 
-import com.njust.dataobject.TrainInfo;
-import com.njust.dataobject.TrainInfoExample;
-
 import java.util.Date;
 import java.util.List;
+
+import com.njust.dataobject.TrainInfo;
+import com.njust.dataobject.TrainInfoExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface TrainInfoMapper {
@@ -38,6 +38,6 @@ public interface TrainInfoMapper {
             , @Param("afterDatetime")Date afterDatetime);
 
     List<TrainInfo> findByTrainDateAndDirection(@Param("preDatetime") Date preDatetime
-            , @Param("afterDatetime")Date afterDatetime,@Param("trainNumber") String trainNumber,
+            , @Param("afterDatetime")Date afterDatetime,@Param("trainId") String trainId,
                                                 @Param("trainDirection") Integer trainDirection);
 }

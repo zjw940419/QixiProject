@@ -2,26 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.MotorInfoMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.MotorInfo" >
-    <id column="motor_id" property="motorId" jdbcType="BIGINT" />
-    <result column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
-    <result column="motor_speed" property="motorSpeed" jdbcType="DOUBLE" />
-    <result column="temp_max" property="tempMax" jdbcType="DOUBLE" />
-    <result column="temp_min" property="tempMin" jdbcType="DOUBLE" />
-    <result column="temp_average" property="tempAverage" jdbcType="DOUBLE" />
-    <result column="lgap_max" property="lgapMax" jdbcType="INTEGER" />
-    <result column="lgap_min" property="lgapMin" jdbcType="INTEGER" />
-    <result column="lgap_average" property="lgapAverage" jdbcType="DOUBLE" />
-    <result column="rgap_max" property="rgapMax" jdbcType="INTEGER" />
-    <result column="rgap_min" property="rgapMin" jdbcType="INTEGER" />
-    <result column="rgap_average" property="rgapAverage" jdbcType="DOUBLE" />
-    <result column="lslot_min" property="lslotMin" jdbcType="INTEGER" />
-    <result column="lslot_max" property="lslotMax" jdbcType="INTEGER" />
-    <result column="lslot_average" property="lslotAverage" jdbcType="DOUBLE" />
-    <result column="rslot_min" property="rslotMin" jdbcType="INTEGER" />
-    <result column="rslot_max" property="rslotMax" jdbcType="INTEGER" />
-    <result column="rslot_average" property="rslotAverage" jdbcType="DOUBLE" />
-    <result column="motor_date" property="motorDate" jdbcType="TIMESTAMP" />
+    <constructor >
+      <idArg column="motor_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_onlyid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="motor_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="motor_speed" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="temp_max" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="temp_min" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="temp_average" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="lgap_max" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lgap_min" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lgap_average" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="rgap_max" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rgap_min" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rgap_average" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="lslot_min" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lslot_max" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lslot_average" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="rslot_min" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rslot_max" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rslot_average" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="motor_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -82,15 +84,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    motor_id, train_id, motor_num, motor_speed, temp_max, temp_min, temp_average, lgap_max, 
-    lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max, lslot_average, 
-    rslot_min, rslot_max, rslot_average, motor_date
+    motor_id, train_onlyid, motor_num, motor_speed, temp_max, temp_min, temp_average,
+    lgap_max, lgap_min, lgap_average, rgap_max, rgap_min, rgap_average, lslot_min, lslot_max,
+    lslot_average, rslot_min, rslot_max, rslot_average, motor_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.MotorInfoExample" >
     select
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from motor_info
     <if test="_parameter != null" >
@@ -101,7 +104,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from motor_info
     where motor_id = #{motorId,jdbcType=BIGINT}
@@ -117,20 +120,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.njust.dataobject.MotorInfo" >
-    insert into motor_info (motor_id, train_id, motor_num, 
-      motor_speed, temp_max, temp_min, 
-      temp_average, lgap_max, lgap_min, 
-      lgap_average, rgap_max, rgap_min, 
-      rgap_average, lslot_min, lslot_max, 
-      lslot_average, rslot_min, rslot_max, 
-      rslot_average, motor_date)
-    values (#{motorId,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{motorNum,jdbcType=INTEGER}, 
-      #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE}, 
-      #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=INTEGER}, #{lgapMin,jdbcType=INTEGER}, 
-      #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=INTEGER}, #{rgapMin,jdbcType=INTEGER}, 
-      #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=INTEGER}, #{lslotMax,jdbcType=INTEGER}, 
-      #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=INTEGER}, #{rslotMax,jdbcType=INTEGER}, 
-      #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
+    insert into motor_info (motor_id, train_onlyid, motor_num,
+    motor_speed, temp_max, temp_min,
+    temp_average, lgap_max, lgap_min,
+    lgap_average, rgap_max, rgap_min,
+    rgap_average, lslot_min, lslot_max,
+    lslot_average, rslot_min, rslot_max,
+    rslot_average, motor_date)
+    values (#{motorId,jdbcType=BIGINT}, #{trainOnlyid,jdbcType=BIGINT}, #{motorNum,jdbcType=INTEGER},
+    #{motorSpeed,jdbcType=DOUBLE}, #{tempMax,jdbcType=DOUBLE}, #{tempMin,jdbcType=DOUBLE},
+    #{tempAverage,jdbcType=DOUBLE}, #{lgapMax,jdbcType=INTEGER}, #{lgapMin,jdbcType=INTEGER},
+    #{lgapAverage,jdbcType=DOUBLE}, #{rgapMax,jdbcType=INTEGER}, #{rgapMin,jdbcType=INTEGER},
+    #{rgapAverage,jdbcType=DOUBLE}, #{lslotMin,jdbcType=INTEGER}, #{lslotMax,jdbcType=INTEGER},
+    #{lslotAverage,jdbcType=DOUBLE}, #{rslotMin,jdbcType=INTEGER}, #{rslotMax,jdbcType=INTEGER},
+    #{rslotAverage,jdbcType=DOUBLE}, #{motorDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.njust.dataobject.MotorInfo" >
     insert into motor_info
@@ -138,8 +141,8 @@
       <if test="motorId != null" >
         motor_id,
       </if>
-      <if test="trainId != null" >
-        train_id,
+      <if test="trainOnlyid != null" >
+        train_onlyid,
       </if>
       <if test="motorNum != null" >
         motor_num,
@@ -200,8 +203,8 @@
       <if test="motorId != null" >
         #{motorId,jdbcType=BIGINT},
       </if>
-      <if test="trainId != null" >
-        #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="motorNum != null" >
         #{motorNum,jdbcType=INTEGER},
@@ -271,8 +274,8 @@
       <if test="record.motorId != null" >
         motor_id = #{record.motorId,jdbcType=BIGINT},
       </if>
-      <if test="record.trainId != null" >
-        train_id = #{record.trainId,jdbcType=BIGINT},
+      <if test="record.trainOnlyid != null" >
+        train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="record.motorNum != null" >
         motor_num = #{record.motorNum,jdbcType=INTEGER},
@@ -336,25 +339,25 @@
   <update id="updateByExample" parameterType="map" >
     update motor_info
     set motor_id = #{record.motorId,jdbcType=BIGINT},
-      train_id = #{record.trainId,jdbcType=BIGINT},
-      motor_num = #{record.motorNum,jdbcType=INTEGER},
-      motor_speed = #{record.motorSpeed,jdbcType=DOUBLE},
-      temp_max = #{record.tempMax,jdbcType=DOUBLE},
-      temp_min = #{record.tempMin,jdbcType=DOUBLE},
-      temp_average = #{record.tempAverage,jdbcType=DOUBLE},
-      lgap_max = #{record.lgapMax,jdbcType=INTEGER},
-      lgap_min = #{record.lgapMin,jdbcType=INTEGER},
-      lgap_average = #{record.lgapAverage,jdbcType=DOUBLE},
-      rgap_max = #{record.rgapMax,jdbcType=INTEGER},
-      rgap_min = #{record.rgapMin,jdbcType=INTEGER},
-      rgap_average = #{record.rgapAverage,jdbcType=DOUBLE},
-      lslot_min = #{record.lslotMin,jdbcType=INTEGER},
-      lslot_max = #{record.lslotMax,jdbcType=INTEGER},
-      lslot_average = #{record.lslotAverage,jdbcType=DOUBLE},
-      rslot_min = #{record.rslotMin,jdbcType=INTEGER},
-      rslot_max = #{record.rslotMax,jdbcType=INTEGER},
-      rslot_average = #{record.rslotAverage,jdbcType=DOUBLE},
-      motor_date = #{record.motorDate,jdbcType=TIMESTAMP}
+    train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
+    motor_num = #{record.motorNum,jdbcType=INTEGER},
+    motor_speed = #{record.motorSpeed,jdbcType=DOUBLE},
+    temp_max = #{record.tempMax,jdbcType=DOUBLE},
+    temp_min = #{record.tempMin,jdbcType=DOUBLE},
+    temp_average = #{record.tempAverage,jdbcType=DOUBLE},
+    lgap_max = #{record.lgapMax,jdbcType=INTEGER},
+    lgap_min = #{record.lgapMin,jdbcType=INTEGER},
+    lgap_average = #{record.lgapAverage,jdbcType=DOUBLE},
+    rgap_max = #{record.rgapMax,jdbcType=INTEGER},
+    rgap_min = #{record.rgapMin,jdbcType=INTEGER},
+    rgap_average = #{record.rgapAverage,jdbcType=DOUBLE},
+    lslot_min = #{record.lslotMin,jdbcType=INTEGER},
+    lslot_max = #{record.lslotMax,jdbcType=INTEGER},
+    lslot_average = #{record.lslotAverage,jdbcType=DOUBLE},
+    rslot_min = #{record.rslotMin,jdbcType=INTEGER},
+    rslot_max = #{record.rslotMax,jdbcType=INTEGER},
+    rslot_average = #{record.rslotAverage,jdbcType=DOUBLE},
+    motor_date = #{record.motorDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -362,8 +365,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.MotorInfo" >
     update motor_info
     <set >
-      <if test="trainId != null" >
-        train_id = #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="motorNum != null" >
         motor_num = #{motorNum,jdbcType=INTEGER},
@@ -424,25 +427,25 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.MotorInfo" >
     update motor_info
-    set train_id = #{trainId,jdbcType=BIGINT},
-      motor_num = #{motorNum,jdbcType=INTEGER},
-      motor_speed = #{motorSpeed,jdbcType=DOUBLE},
-      temp_max = #{tempMax,jdbcType=DOUBLE},
-      temp_min = #{tempMin,jdbcType=DOUBLE},
-      temp_average = #{tempAverage,jdbcType=DOUBLE},
-      lgap_max = #{lgapMax,jdbcType=INTEGER},
-      lgap_min = #{lgapMin,jdbcType=INTEGER},
-      lgap_average = #{lgapAverage,jdbcType=DOUBLE},
-      rgap_max = #{rgapMax,jdbcType=INTEGER},
-      rgap_min = #{rgapMin,jdbcType=INTEGER},
-      rgap_average = #{rgapAverage,jdbcType=DOUBLE},
-      lslot_min = #{lslotMin,jdbcType=INTEGER},
-      lslot_max = #{lslotMax,jdbcType=INTEGER},
-      lslot_average = #{lslotAverage,jdbcType=DOUBLE},
-      rslot_min = #{rslotMin,jdbcType=INTEGER},
-      rslot_max = #{rslotMax,jdbcType=INTEGER},
-      rslot_average = #{rslotAverage,jdbcType=DOUBLE},
-      motor_date = #{motorDate,jdbcType=TIMESTAMP}
+    set train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
+    motor_num = #{motorNum,jdbcType=INTEGER},
+    motor_speed = #{motorSpeed,jdbcType=DOUBLE},
+    temp_max = #{tempMax,jdbcType=DOUBLE},
+    temp_min = #{tempMin,jdbcType=DOUBLE},
+    temp_average = #{tempAverage,jdbcType=DOUBLE},
+    lgap_max = #{lgapMax,jdbcType=INTEGER},
+    lgap_min = #{lgapMin,jdbcType=INTEGER},
+    lgap_average = #{lgapAverage,jdbcType=DOUBLE},
+    rgap_max = #{rgapMax,jdbcType=INTEGER},
+    rgap_min = #{rgapMin,jdbcType=INTEGER},
+    rgap_average = #{rgapAverage,jdbcType=DOUBLE},
+    lslot_min = #{lslotMin,jdbcType=INTEGER},
+    lslot_max = #{lslotMax,jdbcType=INTEGER},
+    lslot_average = #{lslotAverage,jdbcType=DOUBLE},
+    rslot_min = #{rslotMin,jdbcType=INTEGER},
+    rslot_max = #{rslotMax,jdbcType=INTEGER},
+    rslot_average = #{rslotAverage,jdbcType=DOUBLE},
+    motor_date = #{motorDate,jdbcType=TIMESTAMP}
     where motor_id = #{motorId,jdbcType=BIGINT}
   </update>
 
@@ -450,7 +453,7 @@
     select
     <include refid="Base_Column_List" />
     from motor_info
-    where train_id = #{trainId}
+    where train_onlyid = #{trainOnlyid}
     order by motor_num
   </select>
 
@@ -458,7 +461,7 @@
     select
     <include refid="Base_Column_List" />
     from motor_info
-    where train_id = #{trainId}
+    where train_onlyid = #{trainOnlyid}
     and motor_num=#{motorNum}
   </select>
 </mapper>

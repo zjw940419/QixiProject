@@ -5,11 +5,22 @@ import java.util.Date;
 public class TrainFault {
     private Long id;
 
-    private Long trainId;
+    private Long trainOnlyid;
 
     private Integer faultType;
 
     private Date trainDate;
+
+    public TrainFault(Long id, Long trainOnlyid, Integer faultType, Date trainDate) {
+        this.id = id;
+        this.trainOnlyid = trainOnlyid;
+        this.faultType = faultType;
+        this.trainDate = trainDate;
+    }
+
+    public TrainFault() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -19,12 +30,12 @@ public class TrainFault {
         this.id = id;
     }
 
-    public Long getTrainId() {
-        return trainId;
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public Integer getFaultType() {

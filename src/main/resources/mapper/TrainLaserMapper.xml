@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.TrainLaserMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainLaser" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="left_laser" property="leftLaser" jdbcType="DOUBLE" />
-    <result column="right_laser" property="rightLaser" jdbcType="DOUBLE" />
-    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
-    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_onlyid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="left_laser" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="right_laser" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="train_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="motor_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,13 +70,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, train_id, left_laser, right_laser, train_date, motor_num
+    id, train_onlyid, left_laser, right_laser, train_date, motor_num
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainLaserExample" >
     select
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from train_laser
     <if test="_parameter != null" >
@@ -85,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from train_laser
     where id = #{id,jdbcType=BIGINT}
@@ -101,12 +104,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.njust.dataobject.TrainLaser" >
-    insert into train_laser (id, train_id, left_laser, 
-      right_laser, train_date, motor_num
-      )
-    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{leftLaser,jdbcType=DOUBLE}, 
-      #{rightLaser,jdbcType=DOUBLE}, #{trainDate,jdbcType=TIMESTAMP}, #{motorNum,jdbcType=INTEGER}
-      )
+    insert into train_laser (id, train_onlyid, left_laser,
+    right_laser, train_date, motor_num
+    )
+    values (#{id,jdbcType=BIGINT}, #{trainOnlyid,jdbcType=BIGINT}, #{leftLaser,jdbcType=DOUBLE},
+    #{rightLaser,jdbcType=DOUBLE}, #{trainDate,jdbcType=TIMESTAMP}, #{motorNum,jdbcType=INTEGER}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.njust.dataobject.TrainLaser" >
     insert into train_laser
@@ -114,8 +117,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="trainId != null" >
-        train_id,
+      <if test="trainOnlyid != null" >
+        train_onlyid,
       </if>
       <if test="leftLaser != null" >
         left_laser,
@@ -134,8 +137,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="trainId != null" >
-        #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="leftLaser != null" >
         #{leftLaser,jdbcType=DOUBLE},
@@ -163,8 +166,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.trainId != null" >
-        train_id = #{record.trainId,jdbcType=BIGINT},
+      <if test="record.trainOnlyid != null" >
+        train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="record.leftLaser != null" >
         left_laser = #{record.leftLaser,jdbcType=DOUBLE},
@@ -186,11 +189,11 @@
   <update id="updateByExample" parameterType="map" >
     update train_laser
     set id = #{record.id,jdbcType=BIGINT},
-      train_id = #{record.trainId,jdbcType=BIGINT},
-      left_laser = #{record.leftLaser,jdbcType=DOUBLE},
-      right_laser = #{record.rightLaser,jdbcType=DOUBLE},
-      train_date = #{record.trainDate,jdbcType=TIMESTAMP},
-      motor_num = #{record.motorNum,jdbcType=INTEGER}
+    train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
+    left_laser = #{record.leftLaser,jdbcType=DOUBLE},
+    right_laser = #{record.rightLaser,jdbcType=DOUBLE},
+    train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+    motor_num = #{record.motorNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,8 +201,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainLaser" >
     update train_laser
     <set >
-      <if test="trainId != null" >
-        train_id = #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="leftLaser != null" >
         left_laser = #{leftLaser,jdbcType=DOUBLE},
@@ -218,7 +221,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainLaser" >
     update train_laser
-    set train_id = #{trainId,jdbcType=BIGINT},
+    set train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       left_laser = #{leftLaser,jdbcType=DOUBLE},
       right_laser = #{rightLaser,jdbcType=DOUBLE},
       train_date = #{trainDate,jdbcType=TIMESTAMP},
@@ -229,6 +232,6 @@
   <select id="findByTrainIdAndMotorNum" resultMap="BaseResultMap" parameterType="map">
     SELECT
     <include refid="Base_Column_List" />
-    from train_laser where train_id=#{trainId} and motor_num=#{motorNum}
+    from train_laser where train_onlyid=#{trainOnlyid} and motor_num=#{motorNum}
   </select>
 </mapper>

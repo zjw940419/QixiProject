@@ -1,10 +1,10 @@
 package com.njust.mapper;
 
-import com.njust.dataobject.TrainData;
-import com.njust.dataobject.TrainDataExample;
-
 import java.util.Date;
 import java.util.List;
+
+import com.njust.dataobject.TrainData;
+import com.njust.dataobject.TrainDataExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface TrainDataMapper {

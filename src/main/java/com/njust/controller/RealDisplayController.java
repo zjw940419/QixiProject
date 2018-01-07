@@ -27,16 +27,22 @@ public class RealDisplayController {
     private TrainService trainService;
     //显示出列车过车状态 根据前端返回的时间类型的值 判断当前数据库中最后一条记录的插入时间是否 小于传来的时间
 
+
+    /**
+     * 运营结束后 显示当日气隙最小值
+     * @return
+     * @throws ParseException
+     */
     @GetMapping("QixiMinToday")
     @ResponseBody
     public ResultVO QixiMinToday() throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String format = df.format(new Date());
+        //转化时间0-24点
         Date pre = df.parse(format);
         long time = pre.getTime() + 86400000;
         Date after = new Date(time);
-        ResultVO resultVO = trainService.TodayLast10(pre, after);
+        ResultVO resultVO = trainService.todayLast10(pre, after);
         return resultVO;
     }
-
 }

@@ -44,15 +44,15 @@ public class GearServiceImpl implements GearService{
 
     /**
      * 根据列车记录编号 和 电机号 查询到所有齿的数据
-     * @param trainId
+     * @param trainOnlyid
      * @param motorNum
      * @return
      */
     @Override
-    public ResultVO findByTrainIdAndMotorId(Long trainId,Integer motorNum) {
+    public ResultVO findByTrainOnlyidAndMotorId(Long trainOnlyid,Integer motorNum) {
         ResultVO resultVO=new ResultVO();
         List<GearVO> gearVOList=new ArrayList<>();
-        MotorInfo motorInfo = motorInfoMapper.findByTrainIdAndMotorNum(trainId, motorNum);
+        MotorInfo motorInfo = motorInfoMapper.findByTrainIdAndMotorNum(trainOnlyid, motorNum);
         List<GearInfo> gearInfoList = gearInfoMapper.findByMotorId(motorInfo.getMotorId());
         for (GearInfo gearInfo:gearInfoList){
             GearVO gearVO=new GearVO();
@@ -77,14 +77,14 @@ public class GearServiceImpl implements GearService{
         Date end=DateUtil.String2Date(slotForm.getEndTime());
         PageHelper.startPage(slotForm.getPageNum(),slotForm.getPageSize());
         List<TrainInfo> trainInfoList = trainInfoMapper
-                .findByTrainDateAndDirection(start, end, slotForm.getTrainNumber(),slotForm.getTrainDirection());
+                .findByTrainDateAndDirection(start, end, slotForm.getTrainId(),slotForm.getTrainDirection());
         for (TrainInfo trainInfo:trainInfoList){
             SlotTendencyVO slotTendencyVO=new SlotTendencyVO();
             //根据电机的编号和列车记录编号 查询到具体的列车记录编号
             MotorInfo motorInfo = motorInfoMapper
-                    .findByTrainIdAndMotorNum(trainInfo.getTrainId(), slotForm.getMotorNum());
+                    .findByTrainIdAndMotorNum(trainInfo.getTrainOnlyid(), slotForm.getMotorNum());
             slotTendencyVO.setTrainDate(DateUtil.Date2String(trainInfo.getTrainDate()));
-            slotTendencyVO.setTrainNumber(trainInfo.getTrainNumber());
+            slotTendencyVO.setTrainId(trainInfo.getTrainId());
             slotTendencyVO.setTrainDirection(trainInfo.getTrainDirection());
             slotTendencyVO.setMotorNum(motorInfo.getMotorNum());
             //电机编号和具体的齿编号 查询到结果7 73齿的槽楔数据

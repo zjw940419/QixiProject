@@ -3,7 +3,7 @@ package com.njust.dataobject;
 import java.util.Date;
 
 public class TrainSpecialData {
-    private Long trainId;
+    private Long trainOnlyid;
 
     private Integer motorNum;
 
@@ -17,8 +17,8 @@ public class TrainSpecialData {
 
     private Date trainDate;
 
-    public TrainSpecialData(Long trainId, Integer motorNum, Double tlgapMin, Double trgapMin, Double slgapMin, Double srgapMin, Date trainDate) {
-        this.trainId = trainId;
+    public TrainSpecialData(Long trainOnlyid, Integer motorNum, Double tlgapMin, Double trgapMin, Double slgapMin, Double srgapMin, Date trainDate) {
+        this.trainOnlyid = trainOnlyid;
         this.motorNum = motorNum;
         this.tlgapMin = tlgapMin;
         this.trgapMin = trgapMin;
@@ -31,12 +31,12 @@ public class TrainSpecialData {
         super();
     }
 
-    public Long getTrainId() {
-        return trainId;
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public Integer getMotorNum() {

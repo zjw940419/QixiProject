@@ -33,50 +33,50 @@ public class Reportcontroller {
 
     /**
      * 返回左右激光原始数据
-     * @param trainId 列车记录编号
+     * @param trainOnlyid 列车记录编号
      * @param motorNum 电机编号（1-8）
      * @return
      */
-    @RequestMapping("/{trainId}/{motorNum}/laser")
+    @RequestMapping("/{trainOnlyid}/{motorNum}/laser")
     @ResponseBody
-    public ResultVO laserData(@PathVariable(name = "trainId")Long trainId,
+    public ResultVO laserData(@PathVariable(name = "trainOnlyid")Long trainOnlyid,
                           @PathVariable(name = "motorNum") Integer motorNum){
-        return motorService.findByTrainIdAndMotorNum(trainId,motorNum);
+        return motorService.findByTrainOnlyidAndMotorNum(trainOnlyid,motorNum);
     }
 
     /**
      * 返回 具体列车的所有信息
-     * @param trainId
+     * @param trainOnlyid
      * @return
      */
-    @RequestMapping("/{trainId}/trainDetail")
+    @RequestMapping("/{trainOnlyid}/trainDetail")
     @ResponseBody
-    public ResultVO trainDetail(@PathVariable(name = "trainId")Long trainId){
-        return trainService.findTrainInfoByTrainId(trainId);
+    public ResultVO trainDetail(@PathVariable(name = "trainOnlyid")Long trainOnlyid){
+        return trainService.findTrainInfoByTrainOnlyid(trainOnlyid);
     }
 
     /**
      * 返回具体电机综合数据
-     * @param trainId
+     * @param trainOnlyid
      * @return
      */
-    @RequestMapping("/{trainId}/motorDetail")
+    @RequestMapping("/{trainOnlyid}/motorDetail")
     @ResponseBody
-    public ResultVO motorDetail(@PathVariable(name = "trainId")Long trainId){
-        return motorService.findByTrainId(trainId);
+    public ResultVO motorDetail(@PathVariable(name = "trainOnlyid")Long trainOnlyid){
+        return motorService.findByTrainOnlyid(trainOnlyid);
     }
 
     /**
      * 前端 列车记录编号和电机号 返回具体的数据
-     * @param trainId
+     * @param trainOnlyid
      * @param motorNum
      * @return
      */
-    @RequestMapping("/{trainId}/{motorNum}/gearDetail")
+    @RequestMapping("/{trainOnlyid}/{motorNum}/gearDetail")
     @ResponseBody
-    public ResultVO gearDetail(@PathVariable(name = "trainId")Long trainId,
+    public ResultVO gearDetail(@PathVariable(name = "trainOnlyid")Long trainOnlyid,
                                    @PathVariable(name = "motorNum")Integer motorNum){
-        return gearService.findByTrainIdAndMotorId(trainId,motorNum);
+        return gearService.findByTrainOnlyidAndMotorId(trainOnlyid,motorNum);
     }
 
     /**

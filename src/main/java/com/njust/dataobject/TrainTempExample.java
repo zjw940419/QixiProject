@@ -165,63 +165,63 @@ public class TrainTempExample {
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdIsNull() {
-            addCriterion("train_id is null");
+        public Criteria andTrainOnlyidIsNull() {
+            addCriterion("train_onlyid is null");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdIsNotNull() {
-            addCriterion("train_id is not null");
+        public Criteria andTrainOnlyidIsNotNull() {
+            addCriterion("train_onlyid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdEqualTo(Long value) {
-            addCriterion("train_id =", value, "trainId");
+        public Criteria andTrainOnlyidEqualTo(Long value) {
+            addCriterion("train_onlyid =", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdNotEqualTo(Long value) {
-            addCriterion("train_id <>", value, "trainId");
+        public Criteria andTrainOnlyidNotEqualTo(Long value) {
+            addCriterion("train_onlyid <>", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdGreaterThan(Long value) {
-            addCriterion("train_id >", value, "trainId");
+        public Criteria andTrainOnlyidGreaterThan(Long value) {
+            addCriterion("train_onlyid >", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("train_id >=", value, "trainId");
+        public Criteria andTrainOnlyidGreaterThanOrEqualTo(Long value) {
+            addCriterion("train_onlyid >=", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdLessThan(Long value) {
-            addCriterion("train_id <", value, "trainId");
+        public Criteria andTrainOnlyidLessThan(Long value) {
+            addCriterion("train_onlyid <", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdLessThanOrEqualTo(Long value) {
-            addCriterion("train_id <=", value, "trainId");
+        public Criteria andTrainOnlyidLessThanOrEqualTo(Long value) {
+            addCriterion("train_onlyid <=", value, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdIn(List<Long> values) {
-            addCriterion("train_id in", values, "trainId");
+        public Criteria andTrainOnlyidIn(List<Long> values) {
+            addCriterion("train_onlyid in", values, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdNotIn(List<Long> values) {
-            addCriterion("train_id not in", values, "trainId");
+        public Criteria andTrainOnlyidNotIn(List<Long> values) {
+            addCriterion("train_onlyid not in", values, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdBetween(Long value1, Long value2) {
-            addCriterion("train_id between", value1, value2, "trainId");
+        public Criteria andTrainOnlyidBetween(Long value1, Long value2) {
+            addCriterion("train_onlyid between", value1, value2, "trainOnlyid");
             return (Criteria) this;
         }
 
-        public Criteria andTrainIdNotBetween(Long value1, Long value2) {
-            addCriterion("train_id not between", value1, value2, "trainId");
+        public Criteria andTrainOnlyidNotBetween(Long value1, Long value2) {
+            addCriterion("train_onlyid not between", value1, value2, "trainOnlyid");
             return (Criteria) this;
         }
 

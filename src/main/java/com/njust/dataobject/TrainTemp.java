@@ -5,13 +5,25 @@ import java.util.Date;
 public class TrainTemp {
     private Long id;
 
-    private Long trainId;
+    private Long trainOnlyid;
 
     private Double trainTemp;
 
     private Date trainDate;
 
     private Integer motorNum;
+
+    public TrainTemp(Long id, Long trainOnlyid, Double trainTemp, Date trainDate, Integer motorNum) {
+        this.id = id;
+        this.trainOnlyid = trainOnlyid;
+        this.trainTemp = trainTemp;
+        this.trainDate = trainDate;
+        this.motorNum = motorNum;
+    }
+
+    public TrainTemp() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -21,12 +33,12 @@ public class TrainTemp {
         this.id = id;
     }
 
-    public Long getTrainId() {
-        return trainId;
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public Double getTrainTemp() {

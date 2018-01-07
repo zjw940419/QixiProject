@@ -3,11 +3,11 @@ package com.njust.dataobject;
 import java.util.Date;
 
 public class TrainInfo {
-    private Long trainId;
+    private Long trainOnlyid;
 
     private String trainStation;
 
-    private String trainNumber;
+    private String trainId;
 
     private String controlNum;
 
@@ -19,12 +19,27 @@ public class TrainInfo {
 
     private Date insertTime;
 
-    public Long getTrainId() {
-        return trainId;
+    public TrainInfo(Long trainOnlyid, String trainStation, String trainId, String controlNum, Integer trainDirection, Integer trainState, Date trainDate, Date insertTime) {
+        this.trainOnlyid = trainOnlyid;
+        this.trainStation = trainStation;
+        this.trainId = trainId;
+        this.controlNum = controlNum;
+        this.trainDirection = trainDirection;
+        this.trainState = trainState;
+        this.trainDate = trainDate;
+        this.insertTime = insertTime;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public TrainInfo() {
+        super();
+    }
+
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
+    }
+
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public String getTrainStation() {
@@ -35,12 +50,12 @@ public class TrainInfo {
         this.trainStation = trainStation == null ? null : trainStation.trim();
     }
 
-    public String getTrainNumber() {
-        return trainNumber;
+    public String getTrainId() {
+        return trainId;
     }
 
-    public void setTrainNumber(String trainNumber) {
-        this.trainNumber = trainNumber == null ? null : trainNumber.trim();
+    public void setTrainId(String trainId) {
+        this.trainId = trainId == null ? null : trainId.trim();
     }
 
     public String getControlNum() {

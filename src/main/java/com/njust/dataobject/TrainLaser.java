@@ -5,7 +5,7 @@ import java.util.Date;
 public class TrainLaser {
     private Long id;
 
-    private Long trainId;
+    private Long trainOnlyid;
 
     private Double leftLaser;
 
@@ -15,6 +15,19 @@ public class TrainLaser {
 
     private Integer motorNum;
 
+    public TrainLaser(Long id, Long trainOnlyid, Double leftLaser, Double rightLaser, Date trainDate, Integer motorNum) {
+        this.id = id;
+        this.trainOnlyid = trainOnlyid;
+        this.leftLaser = leftLaser;
+        this.rightLaser = rightLaser;
+        this.trainDate = trainDate;
+        this.motorNum = motorNum;
+    }
+
+    public TrainLaser() {
+        super();
+    }
+
     public Long getId() {
         return id;
     }
@@ -23,12 +36,12 @@ public class TrainLaser {
         this.id = id;
     }
 
-    public Long getTrainId() {
-        return trainId;
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public Double getLeftLaser() {

@@ -20,7 +20,7 @@ public class Scheduler {
 
     //@Scheduled(fixedRate=5000)
     public void testTasks() {
-        TrainDataVO trainDataVO = trainService.findByTrainId(new Long(1));
+        TrainDataVO trainDataVO = trainService.findByTrainOnlyid(new Long(1));
         System.out.println(trainDataVO);
     }
 

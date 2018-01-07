@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.TrainFaultMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainFault" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="fault_type" property="faultType" jdbcType="INTEGER" />
-    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_onlyid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fault_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="train_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,13 +68,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, train_id, fault_type, train_date
+    id, train_onlyid, fault_type, train_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainFaultExample" >
     select
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from train_fault
     <if test="_parameter != null" >
@@ -83,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from train_fault
     where id = #{id,jdbcType=BIGINT}
@@ -99,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.njust.dataobject.TrainFault" >
-    insert into train_fault (id, train_id, fault_type, 
-      train_date)
-    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{faultType,jdbcType=INTEGER}, 
-      #{trainDate,jdbcType=TIMESTAMP})
+    insert into train_fault (id, train_onlyid, fault_type,
+    train_date)
+    values (#{id,jdbcType=BIGINT}, #{trainOnlyid,jdbcType=BIGINT}, #{faultType,jdbcType=INTEGER},
+    #{trainDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.njust.dataobject.TrainFault" >
     insert into train_fault
@@ -110,8 +113,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="trainId != null" >
-        train_id,
+      <if test="trainOnlyid != null" >
+        train_onlyid,
       </if>
       <if test="faultType != null" >
         fault_type,
@@ -124,8 +127,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="trainId != null" >
-        #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="faultType != null" >
         #{faultType,jdbcType=INTEGER},
@@ -147,8 +150,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.trainId != null" >
-        train_id = #{record.trainId,jdbcType=BIGINT},
+      <if test="record.trainOnlyid != null" >
+        train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="record.faultType != null" >
         fault_type = #{record.faultType,jdbcType=INTEGER},
@@ -164,9 +167,9 @@
   <update id="updateByExample" parameterType="map" >
     update train_fault
     set id = #{record.id,jdbcType=BIGINT},
-      train_id = #{record.trainId,jdbcType=BIGINT},
-      fault_type = #{record.faultType,jdbcType=INTEGER},
-      train_date = #{record.trainDate,jdbcType=TIMESTAMP}
+    train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
+    fault_type = #{record.faultType,jdbcType=INTEGER},
+    train_date = #{record.trainDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,8 +177,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainFault" >
     update train_fault
     <set >
-      <if test="trainId != null" >
-        train_id = #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="faultType != null" >
         fault_type = #{faultType,jdbcType=INTEGER},
@@ -188,15 +191,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainFault" >
     update train_fault
-    set train_id = #{trainId,jdbcType=BIGINT},
-      fault_type = #{faultType,jdbcType=INTEGER},
-      train_date = #{trainDate,jdbcType=TIMESTAMP}
+    set train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
+    fault_type = #{faultType,jdbcType=INTEGER},
+    train_date = #{trainDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="findByTrainId" resultType="integer" parameterType="Long">
+  <select id="findByTrainOnlyid" resultType="integer" parameterType="Long">
     select
     <include refid="Base_Column_List" />
-    from train_fault where train_id=#{trainId}
+    from train_fault where train_onlyid=#{trainOnlyid}
   </select>
 </mapper>

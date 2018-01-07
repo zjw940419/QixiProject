@@ -2,14 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.TrainInfoMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainInfo" >
-    <id column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="train_station" property="trainStation" jdbcType="VARCHAR" />
-    <result column="train_number" property="trainNumber" jdbcType="VARCHAR" />
-    <result column="control_num" property="controlNum" jdbcType="VARCHAR" />
-    <result column="train_direction" property="trainDirection" jdbcType="INTEGER" />
-    <result column="train_state" property="trainState" jdbcType="INTEGER" />
-    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
-    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <constructor >
+      <idArg column="train_onlyid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_station" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="train_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="control_num" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="train_direction" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="train_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="train_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="insert_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    train_id, train_station, train_number, control_num, train_direction, train_state, 
+    train_onlyid, train_station, train_id, control_num, train_direction, train_state,
     train_date, insert_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainInfoExample" >
@@ -78,6 +80,7 @@
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from train_info
     <if test="_parameter != null" >
@@ -88,14 +91,14 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from train_info
-    where train_id = #{trainId,jdbcType=BIGINT}
+    where train_onlyid = #{trainOnlyid,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from train_info
-    where train_id = #{trainId,jdbcType=BIGINT}
+    where train_onlyid = #{trainOnlyid,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.njust.dataobject.TrainInfoExample" >
     delete from train_info
@@ -104,24 +107,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.njust.dataobject.TrainInfo" >
-    insert into train_info (train_id, train_station, train_number, 
-      control_num, train_direction, train_state, 
-      train_date, insert_time)
-    values (#{trainId,jdbcType=BIGINT}, #{trainStation,jdbcType=VARCHAR}, #{trainNumber,jdbcType=VARCHAR}, 
-      #{controlNum,jdbcType=VARCHAR}, #{trainDirection,jdbcType=INTEGER}, #{trainState,jdbcType=INTEGER}, 
-      #{trainDate,jdbcType=TIMESTAMP}, #{insertTime,jdbcType=TIMESTAMP})
+    insert into train_info (train_onlyid, train_station, train_id,
+    control_num, train_direction, train_state,
+    train_date, insert_time)
+    values (#{trainOnlyid,jdbcType=BIGINT}, #{trainStation,jdbcType=VARCHAR}, #{trainId,jdbcType=VARCHAR},
+    #{controlNum,jdbcType=VARCHAR}, #{trainDirection,jdbcType=INTEGER}, #{trainState,jdbcType=INTEGER},
+    #{trainDate,jdbcType=TIMESTAMP}, #{insertTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.njust.dataobject.TrainInfo" >
     insert into train_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="trainId != null" >
-        train_id,
+      <if test="trainOnlyid != null" >
+        train_onlyid,
       </if>
       <if test="trainStation != null" >
         train_station,
       </if>
-      <if test="trainNumber != null" >
-        train_number,
+      <if test="trainId != null" >
+        train_id,
       </if>
       <if test="controlNum != null" >
         control_num,
@@ -140,14 +143,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="trainId != null" >
-        #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="trainStation != null" >
         #{trainStation,jdbcType=VARCHAR},
       </if>
-      <if test="trainNumber != null" >
-        #{trainNumber,jdbcType=VARCHAR},
+      <if test="trainId != null" >
+        #{trainId,jdbcType=VARCHAR},
       </if>
       <if test="controlNum != null" >
         #{controlNum,jdbcType=VARCHAR},
@@ -175,14 +178,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update train_info
     <set >
-      <if test="record.trainId != null" >
-        train_id = #{record.trainId,jdbcType=BIGINT},
+      <if test="record.trainOnlyid != null" >
+        train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="record.trainStation != null" >
         train_station = #{record.trainStation,jdbcType=VARCHAR},
       </if>
-      <if test="record.trainNumber != null" >
-        train_number = #{record.trainNumber,jdbcType=VARCHAR},
+      <if test="record.trainId != null" >
+        train_id = #{record.trainId,jdbcType=VARCHAR},
       </if>
       <if test="record.controlNum != null" >
         control_num = #{record.controlNum,jdbcType=VARCHAR},
@@ -206,14 +209,14 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update train_info
-    set train_id = #{record.trainId,jdbcType=BIGINT},
-      train_station = #{record.trainStation,jdbcType=VARCHAR},
-      train_number = #{record.trainNumber,jdbcType=VARCHAR},
-      control_num = #{record.controlNum,jdbcType=VARCHAR},
-      train_direction = #{record.trainDirection,jdbcType=INTEGER},
-      train_state = #{record.trainState,jdbcType=INTEGER},
-      train_date = #{record.trainDate,jdbcType=TIMESTAMP},
-      insert_time = #{record.insertTime,jdbcType=TIMESTAMP}
+    set train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
+    train_station = #{record.trainStation,jdbcType=VARCHAR},
+    train_id = #{record.trainId,jdbcType=VARCHAR},
+    control_num = #{record.controlNum,jdbcType=VARCHAR},
+    train_direction = #{record.trainDirection,jdbcType=INTEGER},
+    train_state = #{record.trainState,jdbcType=INTEGER},
+    train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+    insert_time = #{record.insertTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,8 +227,8 @@
       <if test="trainStation != null" >
         train_station = #{trainStation,jdbcType=VARCHAR},
       </if>
-      <if test="trainNumber != null" >
-        train_number = #{trainNumber,jdbcType=VARCHAR},
+      <if test="trainId != null" >
+        train_id = #{trainId,jdbcType=VARCHAR},
       </if>
       <if test="controlNum != null" >
         control_num = #{controlNum,jdbcType=VARCHAR},
@@ -243,24 +246,24 @@
         insert_time = #{insertTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where train_id = #{trainId,jdbcType=BIGINT}
+    where train_onlyid = #{trainOnlyid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainInfo" >
     update train_info
     set train_station = #{trainStation,jdbcType=VARCHAR},
-      train_number = #{trainNumber,jdbcType=VARCHAR},
+      train_id = #{trainId,jdbcType=VARCHAR},
       control_num = #{controlNum,jdbcType=VARCHAR},
       train_direction = #{trainDirection,jdbcType=INTEGER},
       train_state = #{trainState,jdbcType=INTEGER},
       train_date = #{trainDate,jdbcType=TIMESTAMP},
       insert_time = #{insertTime,jdbcType=TIMESTAMP}
-    where train_id = #{trainId,jdbcType=BIGINT}
+    where train_onlyid = #{trainOnlyid,jdbcType=BIGINT}
   </update>
 
   <select id="findTrainInfoByLastTrainId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    FROM train_info order by train_id desc LIMIT 1
+    FROM train_info order by train_onlyid desc LIMIT 1
   </select>
 
   <select id="findTrainInfoByDatetime" resultMap="BaseResultMap" parameterType="map">
@@ -272,7 +275,7 @@
   <select id="findByTrainDateAndDirection" resultMap="BaseResultMap" parameterType="map">
   select
   <include refid="Base_Column_List" />
-  from train_info where train_direction=#{trainDirection} and train_number=#{trainNumber} and
+  from train_info where train_direction=#{trainDirection} and train_id=#{trainId} and
   train_date between #{preDatetime} and #{afterDatetime}
   </select>
 </mapper>

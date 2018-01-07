@@ -3,7 +3,7 @@ package com.njust.dataobject;
 import java.util.Date;
 
 public class TrainData {
-    private Long trainId;
+    private Long trainOnlyid;
 
     private Integer tempMax;
 
@@ -39,12 +39,37 @@ public class TrainData {
 
     private Date trainDate;
 
-    public Long getTrainId() {
-        return trainId;
+    public TrainData(Long trainOnlyid, Integer tempMax, Double tempAverage, Double gapminVal, Integer gapMin, Integer lgapMax, Integer lgapMin, Integer rgapMax, Integer rgapMin, Double rgapAverage, Double lgapAverage, Integer rslotMax, Integer rslotMin, Integer lslotMax, Integer lslotMin, Double rslotAverage, Double lslotAverage, Date trainDate) {
+        this.trainOnlyid = trainOnlyid;
+        this.tempMax = tempMax;
+        this.tempAverage = tempAverage;
+        this.gapminVal = gapminVal;
+        this.gapMin = gapMin;
+        this.lgapMax = lgapMax;
+        this.lgapMin = lgapMin;
+        this.rgapMax = rgapMax;
+        this.rgapMin = rgapMin;
+        this.rgapAverage = rgapAverage;
+        this.lgapAverage = lgapAverage;
+        this.rslotMax = rslotMax;
+        this.rslotMin = rslotMin;
+        this.lslotMax = lslotMax;
+        this.lslotMin = lslotMin;
+        this.rslotAverage = rslotAverage;
+        this.lslotAverage = lslotAverage;
+        this.trainDate = trainDate;
     }
 
-    public void setTrainId(Long trainId) {
-        this.trainId = trainId;
+    public TrainData() {
+        super();
+    }
+
+    public Long getTrainOnlyid() {
+        return trainOnlyid;
+    }
+
+    public void setTrainOnlyid(Long trainOnlyid) {
+        this.trainOnlyid = trainOnlyid;
     }
 
     public Integer getTempMax() {

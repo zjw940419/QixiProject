@@ -11,7 +11,7 @@ public class QixiMinVO implements Serializable{
     private static final long serialVersionUID = 8519295125584236535L;
     private Date trainDate;
 
-    private String trainNumber;
+    private String trainId;
 
     private String controlNum;
 

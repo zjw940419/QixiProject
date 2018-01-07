@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.njust.mapper.TrainTempMapper" >
   <resultMap id="BaseResultMap" type="com.njust.dataobject.TrainTemp" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="train_id" property="trainId" jdbcType="BIGINT" />
-    <result column="train_temp" property="trainTemp" jdbcType="DOUBLE" />
-    <result column="train_date" property="trainDate" jdbcType="TIMESTAMP" />
-    <result column="motor_num" property="motorNum" jdbcType="INTEGER" />
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_onlyid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="train_temp" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="train_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="motor_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,13 +69,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, train_id, train_temp, train_date, motor_num
+    id, train_onlyid, train_temp, train_date, motor_num
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.njust.dataobject.TrainTempExample" >
     select
     <if test="distinct" >
       distinct
     </if>
+    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from train_temp
     <if test="_parameter != null" >
@@ -84,7 +87,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from train_temp
     where id = #{id,jdbcType=BIGINT}
@@ -100,10 +103,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.njust.dataobject.TrainTemp" >
-    insert into train_temp (id, train_id, train_temp, 
-      train_date, motor_num)
-    values (#{id,jdbcType=BIGINT}, #{trainId,jdbcType=BIGINT}, #{trainTemp,jdbcType=DOUBLE}, 
-      #{trainDate,jdbcType=TIMESTAMP}, #{motorNum,jdbcType=INTEGER})
+    insert into train_temp (id, train_onlyid, train_temp,
+    train_date, motor_num)
+    values (#{id,jdbcType=BIGINT}, #{trainOnlyid,jdbcType=BIGINT}, #{trainTemp,jdbcType=DOUBLE},
+    #{trainDate,jdbcType=TIMESTAMP}, #{motorNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.njust.dataobject.TrainTemp" >
     insert into train_temp
@@ -111,8 +114,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="trainId != null" >
-        train_id,
+      <if test="trainOnlyid != null" >
+        train_onlyid,
       </if>
       <if test="trainTemp != null" >
         train_temp,
@@ -128,8 +131,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="trainId != null" >
-        #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="trainTemp != null" >
         #{trainTemp,jdbcType=DOUBLE},
@@ -154,8 +157,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.trainId != null" >
-        train_id = #{record.trainId,jdbcType=BIGINT},
+      <if test="record.trainOnlyid != null" >
+        train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="record.trainTemp != null" >
         train_temp = #{record.trainTemp,jdbcType=DOUBLE},
@@ -174,10 +177,10 @@
   <update id="updateByExample" parameterType="map" >
     update train_temp
     set id = #{record.id,jdbcType=BIGINT},
-      train_id = #{record.trainId,jdbcType=BIGINT},
-      train_temp = #{record.trainTemp,jdbcType=DOUBLE},
-      train_date = #{record.trainDate,jdbcType=TIMESTAMP},
-      motor_num = #{record.motorNum,jdbcType=INTEGER}
+    train_onlyid = #{record.trainOnlyid,jdbcType=BIGINT},
+    train_temp = #{record.trainTemp,jdbcType=DOUBLE},
+    train_date = #{record.trainDate,jdbcType=TIMESTAMP},
+    motor_num = #{record.motorNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -185,8 +188,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.njust.dataobject.TrainTemp" >
     update train_temp
     <set >
-      <if test="trainId != null" >
-        train_id = #{trainId,jdbcType=BIGINT},
+      <if test="trainOnlyid != null" >
+        train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       </if>
       <if test="trainTemp != null" >
         train_temp = #{trainTemp,jdbcType=DOUBLE},
@@ -202,7 +205,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.njust.dataobject.TrainTemp" >
     update train_temp
-    set train_id = #{trainId,jdbcType=BIGINT},
+    set train_onlyid = #{trainOnlyid,jdbcType=BIGINT},
       train_temp = #{trainTemp,jdbcType=DOUBLE},
       train_date = #{trainDate,jdbcType=TIMESTAMP},
       motor_num = #{motorNum,jdbcType=INTEGER}
